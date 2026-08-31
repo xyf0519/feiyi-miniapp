@@ -36,7 +36,7 @@
                             <p id="master-project" class="text-xs text-dark/60 mt-1"></p>
                         </div>
                     </div>
-                    <button id="master-detail-button" class="px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-cream transition-colors text-sm">查看介绍与资料来源</button>
+                    <button id="master-detail-button" class="px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-cream transition-colors text-sm">查看人物介绍</button>
                 </div>
             </section>
 
@@ -51,9 +51,7 @@
                     <span class="text-xs text-dark/55">前 2 节开放 · 后续待解锁</span>
                 </div>
                 <div id="lesson-list" class="space-y-3"></div>
-                <div class="mt-4 p-3 bg-secondary/10 rounded-lg text-xs text-dark/65 leading-relaxed">
-                    <i class="fas fa-circle-info text-primary mr-1"></i>课程视频选自公开教学资源，人物资料用于非遗文化背景介绍，不代表视频均由该人物本人授课。点击视频页可查看原视频来源。
-                </div>
+                <div class="mt-4 p-3 bg-secondary/10 rounded-lg text-xs text-dark/65 leading-relaxed"><i class="fas fa-circle-info text-primary mr-1"></i>前两节为站内原创微课，支持进度拖动与中文语音讲解；后续章节保持锁定，等待课程继续更新。</div>
             </section>
 
             <section class="bg-cream rounded-xl shadow-md p-5 border border-secondary/30">
@@ -61,7 +59,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg border border-primary/20">
                     <div>
                         <h4 id="quiz-title" class="font-medium text-primary mb-1"></h4>
-                        <p class="text-sm text-dark/70">共 5 道单选题，完成即可查看成绩与解析</p>
+                        <p class="text-sm text-dark/70">共 5 道单选题，完成测试可获得 20 文化币</p>
                     </div>
                     <button id="quiz-button" class="px-5 py-2 bg-primary text-cream rounded-lg hover:bg-primary/90 transition-colors text-sm">开始答题</button>
                 </div>
@@ -87,7 +85,8 @@
     document.getElementById('course-level').textContent = course.level;
     document.getElementById('course-title').textContent = course.title;
     document.getElementById('course-meta').innerHTML = '<span><i class="fas fa-clock mr-1"></i>' + course.lessons.length + '课时</span><span><i class="fas fa-user mr-1"></i>' + course.learners + '人学习</span><span><i class="fas fa-star text-yellow-400 mr-1"></i>' + course.rating + '</span>';
-    document.getElementById('master-avatar').textContent = course.master.name.slice(0, 1);
+    if (course.master.photo) document.getElementById('master-avatar').innerHTML = '<img src="' + course.master.photo + '" alt="' + course.master.name + '" class="w-full h-full rounded-full object-cover">';
+    else document.getElementById('master-avatar').textContent = course.master.name.slice(0, 1);
     document.getElementById('master-name').textContent = course.master.name;
     document.getElementById('master-badge').textContent = course.master.badge;
     document.getElementById('master-project').textContent = course.master.project;

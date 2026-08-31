@@ -45,7 +45,7 @@
                 </div>
                 <div class="text-right">
                     <p class="text-xs text-dark/60">我的文化币</p>
-                    <p class="text-primary font-bold text-lg">520</p>
+                    <p id="shop-culture-balance" class="text-primary font-bold text-lg">520</p>
                 </div>
             </div>
         </div>
@@ -230,3 +230,9 @@
     overflow: hidden;
 }
 </style>
+<script>
+(function () {
+    var target = document.getElementById('shop-culture-balance');
+    if (target && window.getCultureCoinBalance) target.textContent = window.getCultureCoinBalance();
+})();
+</script>

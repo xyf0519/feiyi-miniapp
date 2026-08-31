@@ -10,7 +10,7 @@
         <div class="container mx-auto px-4 py-8">
             <p class="text-secondary text-sm mb-2">公开资料 · 可在线核验</p>
             <h2 class="font-kai text-2xl font-bold mb-2">认识技艺背后的人</h2>
-            <p class="text-cream/75 text-sm">收录六门课程对应的代表性传承人、艺术家和研究者</p>
+            <p class="text-cream/75 text-sm">收录四十门课程对应的代表性传承人，人物资料均可公开查阅</p>
         </div>
     </section>
 
@@ -33,7 +33,7 @@
     document.getElementById('master-grid').innerHTML = (window.COURSES || []).map(function (course) {
         return '<article class="bg-cream rounded-xl shadow-md border border-secondary/30 p-5 hover:shadow-lg transition-shadow">' +
             '<div class="flex items-center gap-3 mb-4">' +
-                '<div class="w-16 h-16 shrink-0 rounded-full bg-primary text-cream border-2 border-secondary flex items-center justify-center font-kai text-2xl">' + course.master.name.slice(0, 1) + '</div>' +
+                '<div class="w-16 h-16 shrink-0 rounded-full bg-primary text-cream border-2 border-secondary overflow-hidden flex items-center justify-center font-kai text-2xl">' + (course.master.photo ? '<img src="' + course.master.photo + '" alt="' + course.master.name + '" class="w-full h-full object-cover" loading="lazy">' : course.master.name.slice(0, 1)) + '</div>' +
                 '<div><p class="text-xs text-dark/50">' + course.category + '</p><h3 class="font-kai font-bold text-xl text-primary">' + course.master.name + '</h3><p class="text-xs text-dark/65 mt-1">' + course.master.badge + '</p></div>' +
             '</div>' +
             '<p class="text-sm text-dark/75 leading-relaxed line-clamp-3 mb-4">' + course.master.intro + '</p>' +

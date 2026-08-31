@@ -120,13 +120,13 @@
         document.getElementById('quiz-footer').classList.add('hidden');
         document.getElementById('quiz-result').classList.remove('hidden');
         var passed = correctCount >= 3;
-        var points = correctCount * 5;
+        var reward = window.awardCourseCoins(course.id, 20);
         document.getElementById('result-icon').className = 'w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 ' + (passed ? 'bg-green-100 text-green-600' : 'bg-accent/10 text-accent');
         document.getElementById('result-icon').innerHTML = '<i class="fas ' + (passed ? 'fa-award' : 'fa-book-open') + ' text-3xl"></i>';
         document.getElementById('result-title').textContent = passed ? '恭喜通过测试！' : '再温习一下吧';
-        document.getElementById('result-summary').textContent = '你在“' + course.title + '”测试中获得 ' + (correctCount * 20) + ' 分。';
+        document.getElementById('result-summary').textContent = '你在“' + course.title + '”测试中获得 ' + (correctCount * 20) + ' 分。' + (reward.awarded ? '完成奖励 20 文化币已到账，当前余额 ' + reward.balance + '。' : '本课程的 20 文化币完成奖励已领取，重复测试不重复入账。');
         document.getElementById('result-correct').textContent = correctCount + ' / ' + questions.length;
-        document.getElementById('result-points').textContent = '+' + points;
+        document.getElementById('result-points').textContent = reward.awarded ? '+20' : '已领取';
     }
 
     actionButton.addEventListener('click', function () {

@@ -28,8 +28,11 @@ const sandbox = { window: {} };
 vm.createContext(sandbox);
 vm.runInContext(fs.readFileSync(path.join(webRoot, 'assets', 'js', 'course-data.js'), 'utf8'), sandbox);
 const courses = sandbox.window.COURSES || [];
-check(courses.length === 6, `课程数量应为 6，实际为 ${courses.length}`);
+check(courses.length === 40, `课程数量应为 40，实际为 ${courses.length}`);
 check(new Set(courses.map((course) => course.id)).size === courses.length, '课程 ID 必须唯一');
+for (const category of sandbox.window.COURSE_CATEGORIES || []) {
+    check(courses.filter((course) => course.category === category).length >= 10, `${category}应至少有 10 门课程`);
+}
 
 for (const course of courses) {
     check(course.master?.name && /^https:\/\//.test(course.master?.sourceUrl || ''), `${course.title} 缺少真实人物资料来源`);
@@ -40,7 +43,7 @@ for (const course of courses) {
         if (index < 2) {
             const parts = lesson.duration.split(':').map(Number);
             const seconds = parts[0] * 60 + parts[1];
-            check(Boolean(lesson.bvid) && !lesson.locked, `${course.title} 第 ${index + 1} 节应为可播放视频`);
+            check(lesson.mediaType === 'microLesson' && Array.isArray(lesson.slides) && lesson.slides.length >= 6 && !lesson.locked, `${course.title} 第 ${index + 1} 节应为可播放站内微课`);
             check(seconds >= 300 && seconds <= 720, `${course.title} 第 ${index + 1} 节时长不在 5–12 分钟内`);
         } else {
             check(lesson.locked === true, `${course.title} 第 ${index + 1} 节应保持锁定`);

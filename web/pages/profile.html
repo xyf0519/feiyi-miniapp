@@ -25,7 +25,7 @@
                     <p class="text-cream/80 text-sm mt-1">ID: 123456789</p>
                     <div class="flex items-center space-x-4 mt-2">
                         <div class="bg-cream/20 px-3 py-1 rounded-full text-cream text-xs">
-                            <i class="fas fa-coins mr-1"></i>文化币: 520
+                            <i class="fas fa-coins mr-1"></i>文化币: <span data-culture-balance>520</span>
                         </div>
                         <div class="bg-cream/20 px-3 py-1 rounded-full text-cream text-xs">
                             <i class="fas fa-trophy mr-1"></i>等级: Lv.5
@@ -53,7 +53,7 @@
                 <div class="text-xs text-dark/70 mt-1">获得证书</div>
             </div>
             <div class="bg-cream rounded-lg shadow-md p-4 text-center border border-secondary/30">
-                <div class="text-2xl font-bold text-primary">520</div>
+                <div class="text-2xl font-bold text-primary" data-culture-balance>520</div>
                 <div class="text-xs text-dark/70 mt-1">文化币</div>
             </div>
         </div>
@@ -113,7 +113,7 @@
                         <span class="text-dark/90">文化币明细</span>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <span class="text-primary font-bold">520</span>
+                        <span class="text-primary font-bold" data-culture-balance>520</span>
                         <i class="fas fa-angle-right text-dark/40"></i>
                     </div>
                 </a>
@@ -172,3 +172,9 @@
         </button>
     </main>
 </div>
+<script>
+(function () {
+    var balance = window.getCultureCoinBalance ? window.getCultureCoinBalance() : 520;
+    document.querySelectorAll('[data-culture-balance]').forEach(function (item) { item.textContent = balance; });
+})();
+</script>

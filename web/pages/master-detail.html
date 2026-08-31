@@ -9,12 +9,16 @@
     <main class="flex-grow container mx-auto max-w-3xl px-4 py-6">
         <section class="bg-gradient-to-br from-primary to-dark text-cream rounded-2xl shadow-lg overflow-hidden mb-6">
             <div class="p-7 flex flex-col sm:flex-row sm:items-center gap-5">
-                <div id="profile-avatar" class="w-24 h-24 shrink-0 rounded-full bg-cream text-primary border-4 border-secondary flex items-center justify-center font-kai text-4xl shadow"></div>
+                <div class="w-28 h-28 shrink-0 rounded-full bg-cream border-4 border-secondary shadow overflow-hidden flex items-center justify-center">
+                    <img id="profile-photo" class="hidden w-full h-full object-cover" alt="传承人照片">
+                    <span id="profile-avatar" class="text-primary font-kai text-4xl"></span>
+                </div>
                 <div>
                     <p class="text-secondary text-sm mb-1">非遗课程人物资料</p>
                     <h2 id="profile-name" class="text-3xl font-kai font-bold mb-2"></h2>
                     <span id="profile-badge" class="inline-block bg-cream/15 border border-cream/30 px-3 py-1 rounded-full text-sm"></span>
                     <p id="profile-project" class="text-cream/80 mt-3 text-sm"></p>
+                    <a id="profile-source" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-3 text-xs text-secondary hover:text-cream"><i class="fas fa-up-right-from-square"></i><span id="profile-source-label">公开资料来源</span></a>
                 </div>
             </div>
         </section>
@@ -22,19 +26,6 @@
         <section class="bg-cream rounded-xl shadow-md p-6 border border-secondary/30 mb-6">
             <h3 class="font-kai font-bold text-lg text-primary border-b border-secondary pb-2 mb-4">人物简介</h3>
             <p id="profile-intro" class="text-dark/80 leading-8"></p>
-        </section>
-
-        <section class="bg-cream rounded-xl shadow-md p-6 border border-secondary/30 mb-6">
-            <h3 class="font-kai font-bold text-lg text-primary border-b border-secondary pb-2 mb-4">资料核验</h3>
-            <p class="text-dark/70 leading-relaxed mb-4">本页人物信息依据公开可查资料整理。点击下方链接可在浏览器中查看原始页面并核对身份与项目。</p>
-            <a id="profile-source" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-primary/10 border border-primary/20 rounded-lg text-primary hover:bg-primary/15 transition-colors">
-                <span><i class="fas fa-shield-halved mr-2"></i><span id="profile-source-label"></span></span>
-                <i class="fas fa-up-right-from-square"></i>
-            </a>
-        </section>
-
-        <section class="bg-secondary/10 border border-secondary/30 rounded-xl p-4 text-sm text-dark/65 leading-relaxed mb-6">
-            <i class="fas fa-circle-info text-primary mr-1"></i>人物资料用于介绍相关非遗项目的代表性传承与研究者，不等同于课程视频授课者；视频署名请以原平台页面为准。
         </section>
 
         <button id="profile-course-button" class="w-full py-3 bg-primary text-cream rounded-lg hover:bg-primary/90 font-medium"><i class="fas fa-book-open mr-2"></i>进入相关课程</button>
@@ -52,7 +43,16 @@
     document.getElementById('profile-project').textContent = master.project;
     document.getElementById('profile-intro').textContent = master.intro;
     document.getElementById('profile-source').href = master.sourceUrl;
-    document.getElementById('profile-source-label').textContent = '查看来源：' + master.sourceLabel;
+    document.getElementById('profile-source-label').textContent = master.sourceLabel;
+    if (master.photo) {
+        var photo = document.getElementById('profile-photo');
+        var avatar = document.getElementById('profile-avatar');
+        photo.src = master.photo;
+        photo.alt = master.name + '公开资料照片';
+        photo.classList.remove('hidden');
+        avatar.classList.add('hidden');
+        photo.addEventListener('error', function () { photo.classList.add('hidden'); avatar.classList.remove('hidden'); }, { once: true });
+    }
     document.getElementById('profile-course-button').addEventListener('click', function () { navigateToCourse(course.id); });
 })();
 </script>
