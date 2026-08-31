@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>非遗文化传承平台</title> 
+  <script src="../javascript/reload.js"></script> 
+  <script src="./1992251084038471680/resource_6249310000.js"></script> 
+  <link href="./1992251084038471680/all.min.css" rel="stylesheet"> 
+  <script src="./1992251084038471680/echarts.min.js"></script> 
+  <script>tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#8B4513',
+        // 传统棕色作为主色调
+        secondary: '#D2B48C',
+        // 棕褐色作为辅助色
+        accent: '#CD853F',
+        // 秘鲁棕色作为强调色
+        dark: '#5D4037',
+        // 深棕色
+        light: '#F5DEB3',
+        // 小麦色
+        cream: '#FFF8DC' // 奶油色背景
+      },
+      fontFamily: {
+        song: ['"Noto Serif SC"', 'serif'],
+        // 宋体风格字体
+        kai: ['"Noto Serif SC"', 'serif'] // 楷体风格字体
+      },
+      backgroundImage: {
+        'paper-texture': "url('https://picsum.photos/id/106/1000/1000')"
+      }
+    }
+  }
+};</script> 
+  <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            }
+            .bg-paper {
+                background-color: #FFF8DC;
+                background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmOGRjIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGUwZDAiPjwvcmVjdD4KPC9zdmc+');
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .border-pattern {
+                border-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v100H0z" fill="none"/><path d="M0 0h100v1H0zM0 20h100v1H0zM0 40h100v1H0zM0 60h100v1H0zM0 80h100v1H0zM0 100h100v1H0z" stroke="%238B4513" stroke-width="1"/></svg>') 1 repeat;
+            }
+        }
+    </style>
+  <style>
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+</style> 
+ </head> 
+ <body class="bg-paper min-h-screen font-song text-dark"> 
+  <!-- [MODULE] a1b_页面容器 --> 
+  <div class="min-h-screen flex flex-col"> 
+   <!-- [MODULE] c2d_顶部导航栏 --> 
+   <header class="bg-primary text-cream shadow-md sticky top-0 z-50"> 
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between"> 
+     <!-- [MODULE] e3f_顶部导航栏:logo区域 --> 
+     <div class="flex items-center space-x-2"> 
+      <img src="./1992251084038471680/38c0a982814276034e5b1ff4f8b00ca5.png" alt="非遗文化logo" class="h-10 w-10 rounded-full object-cover"> 
+      <h1 class="text-xl font-kai font-bold" style="width:120px;height:26px"> 传承非遗 </h1> 
+     </div> 
+     <!-- [/MODULE] e3f_顶部导航栏:logo区域 -- 显示平台logo和名称 --> 
+     <!-- [MODULE] g4h_顶部导航栏:快捷功能区 --> 
+     <div class="flex items-center space-x-4"> 
+      <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors"> <i class="fas fa-search text-lg"> </i> </button> 
+      <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors relative"> <i class="fas fa-bell text-lg"> </i> <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"> </span> </button> 
+      <button id="user-menu-button" class="flex items-center space-x-2 p-1 rounded-full hover:bg-secondary/30 transition-colors"> <img src="./1992251084038471680/399cb5f9e6e685024b2f91c5eafe0fa8.png" alt="用户头像" class="h-8 w-8 rounded-full border-2 border-secondary object-cover"> <i class="fas fa-angle-down text-sm"> </i> </button> 
+      <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-secondary/30 transition-colors"> <i class="fas fa-bars text-lg"> </i> </button> 
+     </div> 
+     <!-- [/MODULE] g4h_顶部导航栏:快捷功能区 -- 包含搜索、通知和用户菜单按钮 --> 
+    </div> 
+    <!-- [MODULE] i5j_顶部导航栏:桌面端导航菜单 --> 
+    <nav class="hidden md:flex bg-primary/90"> 
+     <div class="container mx-auto"> 
+      <ul class="flex"> 
+       <li> <a href="javascript:void(0);" class="px-4 py-3 block hover:bg-secondary/50 transition-colors border-b-2 border-secondary"> 首页 </a> </li> 
+       <li> <a href="javascript:void(0);" class="px-4 py-3 block hover:bg-secondary/50 transition-colors"> 课程中心 </a> </li> 
+       <li> <a href="javascript:void(0);" class="px-4 py-3 block hover:bg-secondary/50 transition-colors"> 非遗传承人 </a> </li> 
+       <li> <a href="javascript:void(0);" class="px-4 py-3 block hover:bg-secondary/50 transition-colors"> 文创商城 </a> </li> 
+       <li> <a href="javascript:void(0);" class="px-4 py-3 block hover:bg-secondary/50 transition-colors"> 关于我们 </a> </li> 
+      </ul> 
+     </div> 
+    </nav> 
+    <!-- [/MODULE] i5j_顶部导航栏:桌面端导航菜单 -- 包含首页、课程中心、非遗传承人、文创商城、关于我们五大核心模块 --> 
+   </header> 
+   <!-- [/MODULE] c2d_顶部导航栏 -- 移动端显示汉堡菜单，桌面端显示完整导航 --> 
+   <!-- [MODULE] k6l_移动端侧边菜单 --> 
+   <div id="mobile-menu" class="fixed inset-0 bg-dark/50 z-40 hidden"> 
+    <div class="bg-cream w-64 h-full shadow-xl transform transition-transform duration-300 translate-x-0" id="mobile-menu-content"> 
+     <div class="p-4 border-b border-secondary flex justify-between items-center"> 
+      <h2 class="font-kai font-bold text-xl text-primary"> 导航菜单 </h2> 
+      <button id="close-mobile-menu" class="p-2 rounded-full hover:bg-secondary/30"> <i class="fas fa-times text-primary"> </i> </button> 
+     </div> 
+     <nav class="p-4"> 
+      <ul class="space-y-1"> 
+       <li> <a href="javascript:void(0);" class="block px-4 py-3 rounded-lg bg-primary/10 text-primary font-medium"> 首页 </a> </li> 
+       <li> <a href="javascript:void(0);" class="block px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors"> 课程中心 </a> </li> 
+       <li> <a href="javascript:void(0);" class="block px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors"> 非遗传承人 </a> </li> 
+       <li> <a href="javascript:void(0);" class="block px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors"> 文创商城 </a> </li> 
+       <li> <a href="javascript:void(0);" class="block px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors"> 关于我们 </a> </li> 
+      </ul> 
+     </nav> 
+     <div class="absolute bottom-0 w-full p-4 border-t border-secondary"> 
+      <div class="flex items-center space-x-3 p-3 bg-primary/10 rounded-lg"> 
+       <img src="./1992251084038471680/953e237fbb334e040b5e469c491f0c5b.png" alt="用户头像" class="h-10 w-10 rounded-full border-2 border-secondary object-cover"> 
+       <div> 
+        <p class="font-medium text-primary"> 游客用户 </p> 
+        <p class="text-sm text-dark/70"> 未登录 </p> 
+       </div> 
+      </div> 
+      <button id="mobile-login-button" class="w-full mt-4 bg-primary text-cream py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"> 登录 / 注册 </button> 
+     </div> 
+    </div> 
+   </div> 
+   <!-- [/MODULE] k6l_移动端侧边菜单 -- 移动端点击汉堡菜单后显示，包含所有导航选项 --> 
+   <!-- [MODULE] m7n_用户下拉菜单 --> 
+   <div id="user-menu" class="absolute right-4 top-16 bg-cream rounded-lg shadow-lg w-48 border border-secondary hidden z-50"> 
+    <div class="p-3 border-b border-secondary"> 
+     <div class="flex items-center space-x-3"> 
+      <img src="./1992251084038471680/953e237fbb334e040b5e469c491f0c5b.png" alt="用户头像" class="h-10 w-10 rounded-full border-2 border-secondary object-cover"> 
+      <div> 
+       <p class="font-medium text-primary"> 游客用户 </p> 
+       <p class="text-sm text-dark/70"> 未登录 </p> 
+      </div> 
+     </div> 
+    </div> 
+    <ul class="py-1"> 
+     <li> <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-secondary/20 transition-colors"> <i class="fas fa-user-circle mr-2"> </i> 个人中心 </a> </li> 
+     <li> <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-secondary/20 transition-colors" style="padding-left:43px"> <i class="fas fa-graduation-cap mr-2"> </i> 我的学习 </a> </li> 
+     <li> <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-secondary/20 transition-colors yt-editor" style="outline: none; padding-left: 45px;" contenteditable="false"> <i class="fas fa-coins mr-2"> </i> 我的积分(20) </a> </li> 
+     <li> <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-secondary/20 transition-colors" style="padding-left:43px"> <i class="fas fa-shopping-cart mr-2"> </i> 我的订单 </a> </li> 
+     <li> <a href="javascript:void(0);" class="block px-4 py-2 hover:bg-secondary/20 transition-colors"> <i class="fas fa-cog mr-2"> </i> 设置 </a> </li> 
+     <li> <a href="javascript:void(0);" class="block px-4 py-2 text-red-500 hover:bg-secondary/20 transition-colors" id="logout-button"> <i class="fas fa-sign-out-alt mr-2"> </i> 退出登录 </a> </li> 
+    </ul> 
+   </div> 
+   <!-- [/MODULE] m7n_用户下拉菜单 -- 点击用户头像后显示，包含个人中心、我的学习、我的积分、我的订单、设置和退出登录选项 --> 
+   <!-- [MODULE] o8p_主内容区域 --> 
+   <main class="flex-grow container mx-auto px-4 py-6"> 
+    <!-- [MODULE] q9r_首页:轮播图区域 --> 
+    <section class="mb-8 rounded-xl overflow-hidden shadow-lg border-2 border-secondary"> 
+     <div id="carousel" class="relative h-48 md:h-64"> 
+      <div class="carousel-items h-full"> 
+       <div class="carousel-item absolute inset-0 opacity-100 transition-opacity duration-500"> 
+        <img src="./1992251084038471680/c59146031017dd49d31f8aa789f8e1ae.png" alt="非遗剪纸艺术展" class="w-full h-full object-cover"> 
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent flex flex-col justify-end p-6"> 
+         <h3 class="text-cream text-xl md:text-2xl font-kai font-bold text-shadow"> 非遗剪纸艺术展 </h3> 
+         <p class="text-cream/90 text-sm md:text-base mt-1"> 探索传统剪纸艺术的魅力与传承 </p> 
+        </div> 
+       </div> 
+       <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-500"> 
+        <img src="./1992251084038471680/d7145edf832641acf89a0b2566e154b8.png" alt="中国书法艺术" class="w-full h-full object-cover"> 
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent flex flex-col justify-end p-6"> 
+         <h3 class="text-cream text-xl md:text-2xl font-kai font-bold text-shadow"> 中国书法艺术 </h3> 
+         <p class="text-cream/90 text-sm md:text-base mt-1"> 感受汉字书写的艺术韵味 </p> 
+        </div> 
+       </div> 
+       <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-500"> 
+        <img src="./1992251084038471680/d8358e65fab4ddc14ccb54dbcf9f7631.png" alt="京剧脸谱艺术" class="w-full h-full object-cover"> 
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent flex flex-col justify-end p-6"> 
+         <h3 class="text-cream text-xl md:text-2xl font-kai font-bold text-shadow"> 京剧脸谱艺术 </h3> 
+         <p class="text-cream/90 text-sm md:text-base mt-1"> 了解京剧脸谱的色彩与象征意义 </p> 
+        </div> 
+       </div> 
+      </div> 
+      <button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-primary w-8 h-8 rounded-full flex items-center justify-center shadow-md"> <i class="fas fa-chevron-left"> </i> </button> 
+      <button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-primary w-8 h-8 rounded-full flex items-center justify-center shadow-md"> <i class="fas fa-chevron-right"> </i> </button> 
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2"> 
+       <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-cream opacity-100"> </button> 
+       <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-cream opacity-50"> </button> 
+       <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-cream opacity-50"> </button> 
+      </div> 
+     </div> 
+    </section> 
+    <!-- [/MODULE] q9r_首页:轮播图区域 -- 展示非遗文化相关的轮播图片，包含标题和简短描述 --> 
+    <!-- [MODULE] s0t_首页:课程分类区域 --> 
+    <section class="mb-8"> 
+     <div class="flex justify-between items-center mb-4"> 
+      <h2 class="text-xl md:text-2xl font-kai font-bold text-primary border-b-2 border-secondary pb-1"> 课程分类 </h2> 
+      <a href="javascript:void(0);" class="text-accent hover:underline flex items-center text-sm"> 查看全部 <i class="fas fa-angle-right ml-1"> </i> </a> 
+     </div> 
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-4"> 
+      <!-- [MODULE] u1v_首页:课程分类区域:传统手工艺 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="flex flex-col items-center text-center"> 
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors"> 
+         <i class="fas fa-hand-paper text-primary text-2xl"> </i> 
+        </div> 
+        <h3 class="font-medium text-primary"> 传统手工艺 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 32门课程 </p> 
+       </div> </a> 
+      <!-- [/MODULE] u1v_首页:课程分类区域:传统手工艺 -- 展示传统手工艺分类，包含图标、名称和课程数量 --> 
+      <!-- [MODULE] w2x_首页:课程分类区域:传统音乐 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="flex flex-col items-center text-center"> 
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors"> 
+         <i class="fas fa-music text-primary text-2xl"> </i> 
+        </div> 
+        <h3 class="font-medium text-primary"> 传统音乐 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 24门课程 </p> 
+       </div> </a> 
+      <!-- [/MODULE] w2x_首页:课程分类区域:传统音乐 -- 展示传统音乐分类，包含图标、名称和课程数量 --> 
+      <!-- [MODULE] y3z_首页:课程分类区域:传统舞蹈 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="flex flex-col items-center text-center"> 
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors"> 
+         <i class="fas fa-male text-primary text-2xl"> </i> 
+        </div> 
+        <h3 class="font-medium text-primary"> 传统舞蹈 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 18门课程 </p> 
+       </div> </a> 
+      <!-- [/MODULE] y3z_首页:课程分类区域:传统舞蹈 -- 展示传统舞蹈分类，包含图标、名称和课程数量 --> 
+      <!-- [MODULE] b4c_首页:课程分类区域:传统戏剧 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="flex flex-col items-center text-center"> 
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors"> 
+         <i class="fas fa-theater-masks text-primary text-2xl"> </i> 
+        </div> 
+        <h3 class="font-medium text-primary"> 传统戏剧 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 26门课程 </p> 
+       </div> </a> 
+      <!-- [/MODULE] b4c_首页:课程分类区域:传统戏剧 -- 展示传统戏剧分类，包含图标、名称和课程数量 --> 
+      <!-- [MODULE] d5e_首页:课程分类区域:传统文学 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="flex flex-col items-center text-center"> 
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors"> 
+         <i class="fas fa-book text-primary text-2xl"> </i> 
+        </div> 
+        <h3 class="font-medium text-primary"> 传统文学 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 21门课程 </p> 
+       </div> </a> 
+      <!-- [/MODULE] d5e_首页:课程分类区域:传统文学 -- 展示传统文学分类，包含图标、名称和课程数量 --> 
+      <!-- [MODULE] f6g_首页:课程分类区域:传统医药 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="flex flex-col items-center text-center"> 
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors"> 
+         <i class="fas fa-pills text-primary text-2xl"> </i> 
+        </div> 
+        <h3 class="font-medium text-primary"> 传统医药 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 15门课程 </p> 
+       </div> </a> 
+      <!-- [/MODULE] f6g_首页:课程分类区域:传统医药 -- 展示传统医药分类，包含图标、名称和课程数量 --> 
+      <!-- [MODULE] h7i_首页:课程分类区域:传统节日 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="flex flex-col items-center text-center"> 
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors"> 
+         <i class="fas fa-calendar-alt text-primary text-2xl"> </i> 
+        </div> 
+        <h3 class="font-medium text-primary"> 传统节日 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 19门课程 </p> 
+       </div> </a> 
+      <!-- [/MODULE] h7i_首页:课程分类区域:传统节日 -- 展示传统节日分类，包含图标、名称和课程数量 --> 
+      <!-- [MODULE] j8k_首页:课程分类区域:传统美食 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="flex flex-col items-center text-center"> 
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors"> 
+         <i class="fas fa-utensils text-primary text-2xl"> </i> 
+        </div> 
+        <h3 class="font-medium text-primary"> 传统美食 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 28门课程 </p> 
+       </div> </a> 
+      <!-- [/MODULE] j8k_首页:课程分类区域:传统美食 -- 展示传统美食分类，包含图标、名称和课程数量 --> 
+     </div> 
+    </section> 
+    <!-- [/MODULE] s0t_首页:课程分类区域 -- 建立完整课程分类，包括传统手工艺、传统音乐、传统舞蹈等八大类别 --> 
+    <!-- [MODULE] l9m_首页:推荐课程区域 --> 
+    <section class="mb-8"> 
+     <div class="flex justify-between items-center mb-4"> 
+      <h2 class="text-xl md:text-2xl font-kai font-bold text-primary border-b-2 border-secondary pb-1"> 推荐课程 </h2> 
+      <a href="javascript:void(0);" class="text-accent hover:underline flex items-center text-sm"> 查看全部 <i class="fas fa-angle-right ml-1"> </i> </a> 
+     </div> 
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> 
+      <!-- [MODULE] n0p_首页:推荐课程区域:剪纸艺术入门 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow flex flex-col h-full"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/92da416ccb6e05c90d7e57352e67b84f.png" alt="剪纸艺术入门" class="w-full h-48 object-cover"> 
+        <div class="absolute top-2 right-2 bg-primary text-cream text-xs px-2 py-1 rounded-full">
+          热门 
+        </div> 
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/70 to-transparent p-3"> 
+         <div class="flex items-center text-cream/90 text-xs"> 
+          <i class="fas fa-clock mr-1"> </i> 8课时 
+          <span class="mx-2"> • </span> 
+          <i class="fas fa-signal mr-1"> </i> 初级 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-4 flex-grow flex flex-col"> 
+        <h3 class="font-kai font-bold text-lg text-primary mb-2 hover:text-accent transition-colors"> 剪纸艺术入门 </h3> 
+        <p class="text-sm text-dark/80 mb-4 flex-grow"> 学习传统剪纸的基本技巧和创作方法，感受这项古老民间艺术的魅力。 </p> 
+        <div class="flex items-center justify-between"> 
+         <div class="flex items-center"> 
+          <img src="./1992251084038471680/70b0e99445c9752f68b07e0df7934e20.png" alt="传承人头像" class="w-8 h-8 rounded-full object-cover mr-2"> 
+          <span class="text-sm text-dark/70"> 王大师 </span> 
+         </div> 
+         <div class="flex items-center"> 
+          <i class="fas fa-star text-yellow-500 mr-1"> </i> 
+          <span class="text-sm font-medium"> 4.9 </span> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-4 pt-0"> 
+        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium"> 开始学习 </button> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] n0p_首页:推荐课程区域:剪纸艺术入门 -- 课程卡片包含封面图、标签、课时、难度、标题、简介、传承人信息、评分和开始学习按钮 --> 
+      <!-- [MODULE] q1r_首页:推荐课程区域:京剧脸谱绘制 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow flex flex-col h-full"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/a8ce0939344373a9536ea6c1f3871a0f.png" alt="京剧脸谱绘制" class="w-full h-48 object-cover"> 
+        <div class="absolute top-2 right-2 bg-accent text-cream text-xs px-2 py-1 rounded-full">
+          新课 
+        </div> 
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/70 to-transparent p-3"> 
+         <div class="flex items-center text-cream/90 text-xs"> 
+          <i class="fas fa-clock mr-1"> </i> 10课时 
+          <span class="mx-2"> • </span> 
+          <i class="fas fa-signal mr-1"> </i> 中级 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-4 flex-grow flex flex-col"> 
+        <h3 class="font-kai font-bold text-lg text-primary mb-2 hover:text-accent transition-colors"> 京剧脸谱绘制 </h3> 
+        <p class="text-sm text-dark/80 mb-4 flex-grow"> 了解京剧脸谱的历史渊源、色彩象征和绘制技巧，亲手绘制经典京剧脸谱。 </p> 
+        <div class="flex items-center justify-between"> 
+         <div class="flex items-center"> 
+          <img src="./1992251084038471680/1f2b085420bfe23379c555ef168062cc.png" alt="传承人头像" class="w-8 h-8 rounded-full object-cover mr-2"> 
+          <span class="text-sm text-dark/70"> 李老师 </span> 
+         </div> 
+         <div class="flex items-center"> 
+          <i class="fas fa-star text-yellow-500 mr-1"> </i> 
+          <span class="text-sm font-medium"> 4.8 </span> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-4 pt-0"> 
+        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium"> 开始学习 </button> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] q1r_首页:推荐课程区域:京剧脸谱绘制 -- 课程卡片包含封面图、标签、课时、难度、标题、简介、传承人信息、评分和开始学习按钮 --> 
+      <!-- [MODULE] s2t_首页:推荐课程区域:中国结编织技艺 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow flex flex-col h-full"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/8d20cd300d93b84671b185a51eb8addf.png" alt="中国结编织技艺" class="w-full h-48 object-cover"> 
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/70 to-transparent p-3"> 
+         <div class="flex items-center text-cream/90 text-xs"> 
+          <i class="fas fa-clock mr-1"> </i> 6课时 
+          <span class="mx-2"> • </span> 
+          <i class="fas fa-signal mr-1"> </i> 初级 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-4 flex-grow flex flex-col"> 
+        <h3 class="font-kai font-bold text-lg text-primary mb-2 hover:text-accent transition-colors"> 中国结编织技艺 </h3> 
+        <p class="text-sm text-dark/80 mb-4 flex-grow"> 掌握中国结的基本编织方法，学习平结、吉祥结等经典结型的制作技巧。 </p> 
+        <div class="flex items-center justify-between"> 
+         <div class="flex items-center"> 
+          <img src="./1992251084038471680/18b60c4bb6f5edc2ee0680e8d790a4ae.png" alt="传承人头像" class="w-8 h-8 rounded-full object-cover mr-2"> 
+          <span class="text-sm text-dark/70"> 张老师 </span> 
+         </div> 
+         <div class="flex items-center"> 
+          <i class="fas fa-star text-yellow-500 mr-1"> </i> 
+          <span class="text-sm font-medium"> 4.7 </span> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-4 pt-0"> 
+        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium"> 开始学习 </button> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] s2t_首页:推荐课程区域:中国结编织技艺 -- 课程卡片包含封面图、标签、课时、难度、标题、简介、传承人信息、评分和开始学习按钮 --> 
+     </div> 
+    </section> 
+    <!-- [/MODULE] l9m_首页:推荐课程区域 -- 展示精选课程，课程卡片包含封面图、分类标签、课时数、评分、简介、传承人信息等要素 --> 
+    <!-- [MODULE] u3v_首页:非遗传承人展示 --> 
+    <section class="mb-8"> 
+     <div class="flex justify-between items-center mb-4"> 
+      <h2 class="text-xl md:text-2xl font-kai font-bold text-primary border-b-2 border-secondary pb-1"> 非遗传承人 </h2> 
+      <a href="javascript:void(0);" class="text-accent hover:underline flex items-center text-sm"> 查看全部 <i class="fas fa-angle-right ml-1"> </i> </a> 
+     </div> 
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-4"> 
+      <!-- [MODULE] w4x_首页:非遗传承人展示:剪纸传承人 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/eed89f66a94bbae43bbb25dcf6fabc24.png" alt="剪纸传承人" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"> 
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end"> 
+         <div class="p-3 w-full"> 
+          <button class="w-full bg-cream text-primary text-xs py-1 rounded-lg hover:bg-secondary transition-colors"> 查看详情 </button> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-3 text-center"> 
+        <h3 class="font-medium text-primary"> 王大师 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 剪纸艺术 </p> 
+        <div class="flex justify-center mt-2"> 
+         <span class="bg-secondary/20 text-primary text-xs px-2 py-0.5 rounded-full mx-1"> 国家级 </span> 
+        </div> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] w4x_首页:非遗传承人展示:剪纸传承人 -- 展示传承人头像、姓名、传承技艺和级别标签 --> 
+      <!-- [MODULE] y5z_首页:非遗传承人展示:京剧传承人 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/d7c8df2126574b4022afa4efe972f2d7.png" alt="京剧传承人" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"> 
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end"> 
+         <div class="p-3 w-full"> 
+          <button class="w-full bg-cream text-primary text-xs py-1 rounded-lg hover:bg-secondary transition-colors"> 查看详情 </button> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-3 text-center"> 
+        <h3 class="font-medium text-primary"> 李老师 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 京剧表演 </p> 
+        <div class="flex justify-center mt-2"> 
+         <span class="bg-secondary/20 text-primary text-xs px-2 py-0.5 rounded-full mx-1"> 国家级 </span> 
+        </div> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] y5z_首页:非遗传承人展示:京剧传承人 -- 展示传承人头像、姓名、传承技艺和级别标签 --> 
+      <!-- [MODULE] b6c_首页:非遗传承人展示:陶艺传承人 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/aeca6a13db9e8a61b7f00976c8a6c72f.png" alt="陶艺传承人" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"> 
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end"> 
+         <div class="p-3 w-full"> 
+          <button class="w-full bg-cream text-primary text-xs py-1 rounded-lg hover:bg-secondary transition-colors"> 查看详情 </button> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-3 text-center"> 
+        <h3 class="font-medium text-primary"> 陈老师 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 传统陶艺 </p> 
+        <div class="flex justify-center mt-2"> 
+         <span class="bg-secondary/20 text-primary text-xs px-2 py-0.5 rounded-full mx-1"> 省级 </span> 
+        </div> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] b6c_首页:非遗传承人展示:陶艺传承人 -- 展示传承人头像、姓名、传承技艺和级别标签 --> 
+      <!-- [MODULE] d7e_首页:非遗传承人展示:书法传承人 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/291e163755659e997bcffd74e18b5763.png" alt="书法传承人" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"> 
+        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end"> 
+         <div class="p-3 w-full"> 
+          <button class="w-full bg-cream text-primary text-xs py-1 rounded-lg hover:bg-secondary transition-colors"> 查看详情 </button> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="p-3 text-center"> 
+        <h3 class="font-medium text-primary"> 刘大师 </h3> 
+        <p class="text-xs text-dark/70 mt-1"> 书法艺术 </p> 
+        <div class="flex justify-center mt-2"> 
+         <span class="bg-secondary/20 text-primary text-xs px-2 py-0.5 rounded-full mx-1"> 国家级 </span> 
+        </div> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] d7e_首页:非遗传承人展示:书法传承人 -- 展示传承人头像、姓名、传承技艺和级别标签 --> 
+     </div> 
+    </section> 
+    <!-- [/MODULE] u3v_首页:非遗传承人展示 -- 展示传承人头像、姓名、传承技艺和级别标签，提供查看详情入口 --> 
+    <!-- [MODULE] f8g_首页:学习数据统计 --> 
+    <section class="mb-8 bg-cream rounded-lg shadow-md p-4 border border-secondary/30"> 
+     <h2 class="text-xl md:text-2xl font-kai font-bold text-primary border-b-2 border-secondary pb-1 mb-4"> 学习数据 </h2> 
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"> 
+      <!-- [MODULE] h9i_首页:学习数据统计:已学课程 --> 
+      <div class="bg-white/50 rounded-lg p-4 text-center border border-secondary/20"> 
+       <div class="text-3xl font-bold text-primary mb-1">
+         0 
+       </div> 
+       <div class="text-sm text-dark/70">
+         已学课程 
+       </div> 
+      </div> 
+      <!-- [/MODULE] h9i_首页:学习数据统计:已学课程 -- 显示用户已学习的课程数量 --> 
+      <!-- [MODULE] j0k_首页:学习数据统计:学习时长 --> 
+      <div class="bg-white/50 rounded-lg p-4 text-center border border-secondary/20"> 
+       <div class="text-3xl font-bold text-primary mb-1">
+         0 
+       </div> 
+       <div class="text-sm text-dark/70">
+         学习时长(小时) 
+       </div> 
+      </div> 
+      <!-- [/MODULE] j0k_首页:学习数据统计:学习时长 -- 显示用户累计学习时长 --> 
+      <!-- [MODULE] l1m_首页:学习数据统计:获得证书 --> 
+      <div class="bg-white/50 rounded-lg p-4 text-center border border-secondary/20"> 
+       <div class="text-3xl font-bold text-primary mb-1">
+         0 
+       </div> 
+       <div class="text-sm text-dark/70">
+         获得证书 
+       </div> 
+      </div> 
+      <!-- [/MODULE] l1m_首页:学习数据统计:获得证书 -- 显示用户获得的证书数量 --> 
+      <!-- [MODULE] n2o_首页:学习数据统计:文化币 --> 
+      <div class="bg-white/50 rounded-lg p-4 text-center border border-secondary/20"> 
+       <div class="text-3xl font-bold text-primary mb-1">
+         0 
+       </div> 
+       <div class="text-sm text-dark/70">
+         文化币 
+       </div> 
+      </div> 
+      <!-- [/MODULE] n2o_首页:学习数据统计:文化币 -- 显示用户拥有的文化币数量 --> 
+     </div> 
+     <div class="h-64"> 
+      <div id="learning-chart" class="w-full h-full"> 
+      </div> 
+     </div> 
+    </section> 
+    <!-- [/MODULE] f8g_首页:学习数据统计 -- 统计并展示已学课程数、学习时长、获得证书数、文化币数量，通过图表展示学习趋势 --> 
+    <!-- [MODULE] p3q_首页:文化币兑换 --> 
+    <section class="mb-8"> 
+     <div class="flex justify-between items-center mb-4"> 
+      <h2 class="text-xl md:text-2xl font-kai font-bold text-primary border-b-2 border-secondary pb-1"> 文化币兑换 </h2> 
+      <a href="javascript:void(0);" class="text-accent hover:underline flex items-center text-sm"> 积分规则 <i class="fas fa-angle-right ml-1"> </i> </a> 
+     </div> 
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-4"> 
+      <!-- [MODULE] r4s_首页:文化币兑换:10元现金 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="p-5 text-center"> 
+        <div class="text-3xl font-bold text-primary mb-2">
+          ¥10 
+        </div> 
+        <div class="text-sm text-dark/70 mb-4">
+          现金红包 
+        </div> 
+        <div class="text-xs text-dark/60 mb-4">
+          需要 1000 文化币 
+        </div> 
+        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium"> 立即兑换 </button> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] r4s_首页:文化币兑换:10元现金 -- 显示兑换所需文化币数量和兑换按钮 --> 
+      <!-- [MODULE] t5u_首页:文化币兑换:50元现金 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border-2 border-primary hover:shadow-lg transition-shadow group relative"> 
+       <div class="absolute top-0 right-0 bg-primary text-cream text-xs px-2 py-0.5">
+         热门 
+       </div> 
+       <div class="p-5 text-center"> 
+        <div class="text-3xl font-bold text-primary mb-2">
+          ¥50 
+        </div> 
+        <div class="text-sm text-dark/70 mb-4">
+          现金红包 
+        </div> 
+        <div class="text-xs text-dark/60 mb-4">
+          需要 5000 文化币 
+        </div> 
+        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium"> 立即兑换 </button> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] t5u_首页:文化币兑换:50元现金 -- 显示兑换所需文化币数量和兑换按钮，标有热门标签 --> 
+      <!-- [MODULE] v6w_首页:文化币兑换:100元现金 --> 
+      <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="p-5 text-center"> 
+        <div class="text-3xl font-bold text-primary mb-2">
+          ¥100 
+        </div> 
+        <div class="text-sm text-dark/70 mb-4">
+          现金红包 
+        </div> 
+        <div class="text-xs text-dark/60 mb-4">
+          需要 
+         <span class="line-through text-red-500"> 12000 </span> 10000 文化币 
+        </div> 
+        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium"> 立即兑换 </button> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] v6w_首页:文化币兑换:100元现金 -- 显示兑换所需文化币数量和兑换按钮，标有优惠价格 --> 
+     </div> 
+     <div class="mt-4 bg-secondary/10 rounded-lg p-4 text-sm text-dark/80"> 
+      <p class="font-medium text-primary mb-2"> 文化币获取方式： </p> 
+      <ul class="list-disc pl-[20px] space-y-1"> 
+       <li> 完成视频观看获得2文化币/次 </li> 
+       <li> 答题正确获得5文化币/题 </li> 
+       <li> 全对额外奖励5文化币 </li> 
+       <li> 参与线上活动获得不定额文化币 </li> 
+      </ul> 
+     </div> 
+    </section> 
+    <!-- [/MODULE] p3q_首页:文化币兑换 -- 提供10元、50元、100元等不同额度的现金兑换，显示文化币获取方式 --> 
+    <!-- [MODULE] x7y_首页:文创商城推荐 --> 
+    <section class="mb-8"> 
+     <div class="flex justify-between items-center mb-4"> 
+      <h2 class="text-xl md:text-2xl font-kai font-bold text-primary border-b-2 border-secondary pb-1"> 文创商城 </h2> 
+      <a href="javascript:void(0);" class="text-accent hover:underline flex items-center text-sm"> 查看全部 <i class="fas fa-angle-right ml-1"> </i> </a> 
+     </div> 
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-4"> 
+      <!-- [MODULE] z8a_首页:文创商城推荐:剪纸艺术品 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/daf33f08cb06e79788bf2d92a35760ab.png" alt="剪纸艺术品" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"> 
+       </div> 
+       <div class="p-3"> 
+        <h3 class="font-medium text-primary text-sm"> 传统剪纸装饰画 </h3> 
+        <div class="flex justify-between items-center mt-2"> 
+         <span class="text-primary font-bold yt-editor" style="padding-right: 0px; outline: none;" contenteditable="false"> 100文化币+¥69 </span> 
+         <button class="bg-primary/10 hover:bg-primary/20 text-primary p-1 rounded-full transition-colors"> <i class="fas fa-shopping-cart text-xs"> </i> </button> 
+        </div> 
+       </div> </a> 
+      <!-- [/MODULE] z8a_首页:文创商城推荐:剪纸艺术品 -- 展示商品图片、名称、价格和加入购物车按钮 --> 
+      <!-- [MODULE] b9c_首页:文创商城推荐:京剧脸谱书签 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/656db0f0e72c9c22658206b890ce653a.png" alt="京剧脸谱书签" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"> 
+       </div> 
+       <div class="p-3"> 
+        <h3 class="font-medium text-primary text-sm"> 京剧脸谱书签 </h3> 
+        <div class="flex justify-between items-center mt-2"> 
+         <span class="text-primary font-bold yt-editor" style="outline: none;" contenteditable="false"> 80文化币+¥39 </span> 
+         <button class="bg-primary/10 hover:bg-primary/20 text-primary p-1 rounded-full transition-colors"> <i class="fas fa-shopping-cart text-xs"> </i> </button> 
+        </div> 
+       </div> </a> 
+      <!-- [/MODULE] b9c_首页:文创商城推荐:京剧脸谱书签 -- 展示商品图片、名称、价格和加入购物车按钮 --> 
+      <!-- [MODULE] d0e_首页:文创商城推荐:中国结挂饰 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/a7ae94ff66a399a6cda9cd38135bff07.png" alt="中国结挂饰" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"> 
+       </div> 
+       <div class="p-3"> 
+        <h3 class="font-medium text-primary text-sm"> 中国结挂饰 </h3> 
+        <div class="flex justify-between items-center mt-2"> 
+         <span class="text-primary font-bold"> ¥89 </span> 
+         <button class="bg-primary/10 hover:bg-primary/20 text-primary p-1 rounded-full transition-colors"> <i class="fas fa-shopping-cart text-xs"> </i> </button> 
+        </div> 
+       </div> </a> 
+      <!-- [/MODULE] d0e_首页:文创商城推荐:中国结挂饰 -- 展示商品图片、名称、价格和加入购物车按钮 --> 
+      <!-- [MODULE] f1g_首页:文创商城推荐:书法字帖 --> 
+      <a href="javascript:void(0);" class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow group"> 
+       <div class="relative"> 
+        <img src="./1992251084038471680/a49a3a6ac580c0000b3658b160dc1562.png" alt="书法字帖" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"> 
+       </div> 
+       <div class="p-3"> 
+        <h3 class="font-medium text-primary text-sm"> 书法练习字帖 </h3> 
+        <div class="flex justify-between items-center mt-2"> 
+         <span class="text-primary font-bold"> ¥45 </span> 
+         <button class="bg-primary/10 hover:bg-primary/20 text-primary p-1 rounded-full transition-colors"> <i class="fas fa-shopping-cart text-xs"> </i> </button> 
+        </div> 
+       </div> </a> 
+      <!-- [/MODULE] f1g_首页:文创商城推荐:书法字帖 -- 展示商品图片、名称、价格和加入购物车按钮 --> 
+     </div> 
+    </section> 
+    <!-- [/MODULE] x7y_首页:文创商城推荐 -- 展示文创商品，包含商品图片、名称、价格和加入购物车按钮 --> 
+   </main> 
+   <!-- [/MODULE] o8p_主内容区域 -- 包含轮播图、课程分类、推荐课程、非遗传承人、学习数据统计、文化币兑换和文创商城推荐等模块 --> 
+   <!-- [MODULE] h2i_底部导航栏 --> 
+   <footer class="bg-primary text-cream py-6"> 
+    <div class="container mx-auto px-4"> 
+     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6"> 
+      <!-- [MODULE] j3k_底部导航栏:关于我们 --> 
+      <div> 
+       <h3 class="text-lg font-kai font-bold mb-3"> 关于我们 </h3> 
+       <ul class="space-y-2 text-sm text-cream/80"> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 平台介绍 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 团队成员 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 联系方式 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 加入我们 </a> </li> 
+       </ul> 
+      </div> 
+      <!-- [/MODULE] j3k_底部导航栏:关于我们 -- 包含平台介绍、团队成员、联系方式和加入我们链接 --> 
+      <!-- [MODULE] l4m_底部导航栏:帮助中心 --> 
+      <div> 
+       <h3 class="text-lg font-kai font-bold mb-3"> 帮助中心 </h3> 
+       <ul class="space-y-2 text-sm text-cream/80"> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 常见问题 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 学习指南 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 兑换说明 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 意见反馈 </a> </li> 
+       </ul> 
+      </div> 
+      <!-- [/MODULE] l4m_底部导航栏:帮助中心 -- 包含常见问题、学习指南、兑换说明和意见反馈链接 --> 
+      <!-- [MODULE] n5o_底部导航栏:资源中心 --> 
+      <div> 
+       <h3 class="text-lg font-kai font-bold mb-3"> 资源中心 </h3> 
+       <ul class="space-y-2 text-sm text-cream/80"> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 非遗资料库 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 教学视频 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 活动日历 </a> </li> 
+        <li> <a href="javascript:void(0);" class="hover:text-cream transition-colors"> 下载中心 </a> </li> 
+       </ul> 
+      </div> 
+      <!-- [/MODULE] n5o_底部导航栏:资源中心 -- 包含非遗资料库、教学视频、活动日历和下载中心链接 --> 
+      <!-- [MODULE] p6q_底部导航栏:关注我们 --> 
+      <div> 
+       <h3 class="text-lg font-kai font-bold mb-3"> 关注我们 </h3> 
+       <div class="flex space-x-3 mb-4"> 
+        <a href="javascript:void(0);" class="bg-cream/20 hover:bg-cream/30 w-10 h-10 rounded-full flex items-center justify-center transition-colors"> <i class="fab fa-weixin text-lg"> </i> </a> 
+        <a href="javascript:void(0);" class="bg-cream/20 hover:bg-cream/30 w-10 h-10 rounded-full flex items-center justify-center transition-colors"> <i class="fab fa-weibo text-lg"> </i> </a> 
+        <a href="javascript:void(0);" class="bg-cream/20 hover:bg-cream/30 w-10 h-10 rounded-full flex items-center justify-center transition-colors"> <i class="fab fa-qq text-lg"> </i> </a> 
+        <a href="javascript:void(0);" class="bg-cream/20 hover:bg-cream/30 w-10 h-10 rounded-full flex items-center justify-center transition-colors"> <i class="fab fa-youtube text-lg"> </i> </a> 
+       </div> 
+       <div class="text-sm text-cream/80"> 
+        <p class="mb-2"> 扫描二维码关注公众号 </p> 
+        <img src="./1992251084038471680/eab1f34f5af668a86ca0f707996866d5.png" alt="公众号二维码" class="w-20 h-20 object-cover border-2 border-cream/30"> 
+       </div> 
+      </div> 
+      <!-- [/MODULE] p6q_底部导航栏:关注我们 -- 包含社交媒体图标和公众号二维码 --> 
+     </div> 
+     <div class="border-t border-cream/20 pt-4 text-center text-sm text-cream/60"> 
+      <p> © 2023 非遗文化传承平台 版权所有 </p> 
+      <p class="mt-1"> ICP备案号：粤ICP备12345678号 </p> 
+     </div> 
+    </div> 
+   </footer> 
+   <!-- [/MODULE] h2i_底部导航栏 -- 包含关于我们、帮助中心、资源中心和关注我们等板块 --> 
+   <!-- [MODULE] r7s_登录模态框 --> 
+   <div id="login-modal" class="fixed inset-0 bg-dark/50 z-50 hidden flex items-center justify-center p-4"> 
+    <div class="bg-cream rounded-lg shadow-xl w-full max-w-md border-2 border-secondary"> 
+     <div class="p-4 border-b border-secondary flex justify-between items-center"> 
+      <h2 class="font-kai font-bold text-xl text-primary"> 用户登录 </h2> 
+      <button id="close-login-modal" class="p-2 rounded-full hover:bg-secondary/20 transition-colors"> <i class="fas fa-times text-primary"> </i> </button> 
+     </div> 
+     <div class="p-6"> 
+      <div class="mb-4"> 
+       <label class="block text-sm font-medium text-dark mb-1" for="login-phone"> 手机号 </label> 
+       <div class="relative"> 
+        <input type="tel" id="login-phone" class="w-full px-4 py-2 border border-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="请输入手机号"> 
+       </div> 
+      </div> 
+      <div class="mb-6"> 
+       <div class="flex justify-between items-center mb-1"> 
+        <label class="block text-sm font-medium text-dark" for="login-password"> 密码 </label> 
+        <a href="javascript:void(0);" class="text-sm text-accent hover:underline"> 忘记密码? </a> 
+       </div> 
+       <div class="relative"> 
+        <input type="password" id="login-password" class="w-full px-4 py-2 border border-secondary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="请输入密码"> 
+        <button class="absolute right-3 top-1/2 -translate-y-1/2 text-dark/50 hover:text-dark transition-colors" id="toggle-password"> <i class="fas fa-eye-slash"> </i> </button> 
+       </div> 
+      </div> 
+      <button id="do-login" class="w-full bg-primary hover:bg-primary/90 text-cream py-3 rounded-lg transition-colors font-medium mb-4"> 登录 </button> 
+      <div class="text-center text-sm text-dark/60 mb-4">
+        还没有账号? 
+       <a href="javascript:void(0);" class="text-primary hover:underline"> 立即注册 </a> 
+      </div> 
+      <div class="relative flex items-center justify-center"> 
+       <div class="absolute left-0 right-0 h-px bg-secondary/30"> 
+       </div> 
+       <div class="relative bg-cream px-4 text-sm text-dark/60">
+         其他登录方式 
+       </div> 
+      </div> 
+      <div class="flex justify-center space-x-6 mt-6"> 
+       <a href="javascript:void(0);" class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white hover:bg-green-600 transition-colors"> <i class="fab fa-weixin text-xl"> </i> </a> 
+       <a href="javascript:void(0);" class="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center text-white hover:bg-red-600 transition-colors"> <i class="fab fa-weibo text-xl"> </i> </a> 
+       <a href="javascript:void(0);" class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white hover:bg-blue-600 transition-colors"> <i class="fab fa-qq text-xl"> </i> </a> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <!-- [/MODULE] r7s_登录模态框 -- 支持手机号密码登录和微信、微博、QQ等多种登录方式 --> 
+  </div> 
+  <!-- [/MODULE] a1b_页面容器 -- 包含整个页面的所有内容 --> 
+  <!-- [JSMOD] t8u_页面导航交互 --> 
+  <script id="nav-script">// 页面加载时初始化渲染
+document.addEventListener('DOMContentLoaded', function () {
+  // 移动端菜单交互
+  var mobileMenuButton = document.getElementById('mobile-menu-button');
+  var closeMobileMenuButton = document.getElementById('close-mobile-menu');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var mobileMenuContent = document.getElementById('mobile-menu-content');
+  var mobileLoginButton = document.getElementById('mobile-login-button');
+
+  // 用户菜单交互
+  var userMenuButton = document.getElementById('user-menu-button');
+  var userMenu = document.getElementById('user-menu');
+  var logoutButton = document.getElementById('logout-button');
+
+  // 登录模态框交互
+  var loginModal = document.getElementById('login-modal');
+  var closeLoginModal = document.getElementById('close-login-modal');
+  var togglePassword = document.getElementById('toggle-password');
+  var loginPassword = document.getElementById('login-password');
+  var doLoginButton = document.getElementById('do-login');
+
+  // 点击移动菜单按钮打开菜单
+  mobileMenuButton.addEventListener('click', function () {
+    mobileMenu.classList.remove('hidden');
+    setTimeout(function () {
+      mobileMenuContent.classList.remove('translate-x-[-100%]');
+      mobileMenuContent.classList.add('translate-x-0');
+    }, 10);
+  });
+
+  // 关闭移动菜单
+  function closeMobileMenu() {
+    mobileMenuContent.classList.remove('translate-x-0');
+    mobileMenuContent.classList.add('translate-x-[-100%]');
+    setTimeout(function () {
+      mobileMenu.classList.add('hidden');
+    }, 300);
+  }
+  closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+  mobileMenu.addEventListener('click', function (e) {
+    if (e.target === mobileMenu) {
+      closeMobileMenu();
+    }
+  });
+
+  // 点击用户菜单按钮切换菜单显示
+  userMenuButton.addEventListener('click', function (e) {
+    e.stopPropagation();
+    userMenu.classList.toggle('hidden');
+  });
+
+  // 点击页面其他地方关闭用户菜单
+  document.addEventListener('click', function () {
+    userMenu.classList.add('hidden');
+  });
+
+  // 阻止用户菜单内部点击事件冒泡
+  userMenu.addEventListener('click', function (e) {
+    e.stopPropagation();
+  });
+
+  // 打开登录模态框
+  function openLoginModal() {
+    loginModal.classList.remove('hidden');
+    loginModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // 关闭登录模态框
+  function closeLoginModalFunc() {
+    loginModal.classList.add('hidden');
+    loginModal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  // 移动端登录按钮
+  mobileLoginButton.addEventListener('click', function () {
+    closeMobileMenu();
+    openLoginModal();
+  });
+
+  // 退出登录按钮
+  logoutButton.addEventListener('click', function () {
+    userMenu.classList.add('hidden');
+    openLoginModal();
+  });
+
+  // 关闭登录模态框
+  closeLoginModal.addEventListener('click', closeLoginModalFunc);
+  loginModal.addEventListener('click', function (e) {
+    if (e.target === loginModal) {
+      closeLoginModalFunc();
+    }
+  });
+
+  // 切换密码显示/隐藏
+  togglePassword.addEventListener('click', function () {
+    var type = loginPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    loginPassword.setAttribute('type', type);
+    togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+  });
+
+  // 登录按钮点击事件
+  doLoginButton.addEventListener('click', function () {
+    var phone = document.getElementById('login-phone').value;
+    var password = loginPassword.value;
+
+    // 简单验证
+    if (!phone) {
+      alert('请输入手机号');
+      return;
+    }
+    if (!password) {
+      alert('请输入密码');
+      return;
+    }
+
+    // 这里应该有实际的登录验证逻辑
+    alert('登录成功！');
+    closeLoginModalFunc();
+
+    // 模拟登录状态更新
+    document.querySelector('#user-menu .font-medium').textContent = '非遗爱好者';
+    document.querySelector('#user-menu .text-sm').textContent = '已登录';
+    document.querySelector('#mobile-menu .font-medium').textContent = '非遗爱好者';
+    document.querySelector('#mobile-menu .text-sm').textContent = '已登录';
+  });
+
+  // 点击移动菜单中的链接关闭菜单
+  var mobileMenuLinks = mobileMenu.querySelectorAll('a');
+  mobileMenuLinks.forEach(function (link) {
+    link.addEventListener('click', closeMobileMenu);
+  });
+});</script> 
+  <!-- [/JSMOD] t8u_页面导航交互 -- 处理移动端菜单、用户菜单和登录模态框的交互逻辑 --> 
+  <!-- [JSMOD] v9w_轮播图交互 --> 
+  <script id="carousel-script">// 页面加载时初始化渲染
+document.addEventListener('DOMContentLoaded', function () {
+  var carousel = document.getElementById('carousel');
+  var items = carousel.querySelectorAll('.carousel-item');
+  var dots = carousel.querySelectorAll('.carousel-dot');
+  var prevButton = carousel.querySelector('.carousel-prev');
+  var nextButton = carousel.querySelector('.carousel-next');
+  var currentIndex = 0;
+  var interval;
+
+  // 初始化轮播
+  function initCarousel() {
+    showSlide(currentIndex);
+    startInterval();
+
+    // 鼠标悬停时暂停轮播
+    carousel.addEventListener('mouseenter', stopInterval);
+    carousel.addEventListener('mouseleave', startInterval);
+
+    // 点击指示器切换幻灯片
+    dots.forEach(function (dot, index) {
+      dot.addEventListener('click', function () {
+        goToSlide(index);
+      });
+    });
+
+    // 点击前后按钮切换幻灯片
+    prevButton.addEventListener('click', prevSlide);
+    nextButton.addEventListener('click', nextSlide);
+  }
+
+  // 显示指定索引的幻灯片
+  function showSlide(index) {
+    // 隐藏所有幻灯片
+    items.forEach(function (item) {
+      item.classList.remove('opacity-100');
+      item.classList.add('opacity-0');
+    });
+
+    // 重置所有指示器
+    dots.forEach(function (dot) {
+      dot.classList.remove('opacity-100');
+      dot.classList.add('opacity-50');
+    });
+
+    // 显示当前幻灯片和激活当前指示器
+    items[index].classList.remove('opacity-0');
+    items[index].classList.add('opacity-100');
+    dots[index].classList.remove('opacity-50');
+    dots[index].classList.add('opacity-100');
+    currentIndex = index;
+  }
+
+  // 切换到指定索引的幻灯片
+  function goToSlide(index) {
+    if (index < 0) {
+      index = items.length - 1;
+    } else if (index >= items.length) {
+      index = 0;
+    }
+    showSlide(index);
+    resetInterval();
+  }
+
+  // 切换到上一张幻灯片
+  function prevSlide() {
+    goToSlide(currentIndex - 1);
+  }
+
+  // 切换到下一张幻灯片
+  function nextSlide() {
+    goToSlide(currentIndex + 1);
+  }
+
+  // 开始自动轮播
+  function startInterval() {
+    interval = setInterval(function () {
+      nextSlide();
+    }, 5000);
+  }
+
+  // 停止自动轮播
+  function stopInterval() {
+    clearInterval(interval);
+  }
+
+  // 重置自动轮播计时器
+  function resetInterval() {
+    stopInterval();
+    startInterval();
+  }
+
+  // 初始化轮播
+  initCarousel();
+});</script> 
+  <!-- [/JSMOD] v9w_轮播图交互 -- 实现轮播图的自动播放和手动切换功能 --> 
+  <!-- [JSMOD] x0y_学习数据图表 --> 
+  <script id="chart-script">// 页面加载时初始化渲染
+document.addEventListener('DOMContentLoaded', function () {
+  // 初始化学习数据图表
+  function initLearningChart() {
+    var chartDom = document.getElementById('learning-chart');
+    if (!chartDom) return;
+
+    // 检查DOM是否可见
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          // 元素可见时初始化图表
+          var myChart = echarts.init(chartDom);
+
+          // 图表配置
+          var option = {
+            title: {
+              text: '学习时长趋势',
+              left: 'center',
+              textStyle: {
+                color: '#8B4513',
+                fontFamily: '"Noto Serif SC", serif'
+              }
+            },
+            tooltip: {
+              trigger: 'axis',
+              axisPointer: {
+                type: 'shadow'
+              }
+            },
+            legend: {
+              data: ['学习时长(小时)'],
+              bottom: 0
+            },
+            grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '15%',
+              top: '15%',
+              containLabel: true
+            },
+            xAxis: {
+              type: 'category',
+              data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+              axisLine: {
+                lineStyle: {
+                  color: '#D2B48C'
+                }
+              },
+              axisLabel: {
+                color: '#5D4037'
+              }
+            },
+            yAxis: {
+              type: 'value',
+              name: '小时',
+              nameTextStyle: {
+                color: '#5D4037'
+              },
+              axisLine: {
+                lineStyle: {
+                  color: '#D2B48C'
+                }
+              },
+              axisLabel: {
+                color: '#5D4037'
+              },
+              splitLine: {
+                lineStyle: {
+                  color: '#F5DEB3'
+                }
+              }
+            },
+            series: [{
+              name: '学习时长(小时)',
+              type: 'bar',
+              data: [0, 0, 0, 0, 0, 0, 0],
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: '#CD853F'
+                }, {
+                  offset: 1,
+                  color: '#8B4513'
+                }])
+              },
+              emphasis: {
+                itemStyle: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#8B4513'
+                  }, {
+                    offset: 1,
+                    color: '#CD853F'
+                  }])
+                }
+              }
+            }]
+          };
+
+          // 设置图表配置
+          myChart.setOption(option);
+
+          // 监听窗口大小变化，调整图表大小
+          var resizeObserver = new ResizeObserver(function () {
+            setTimeout(function () {
+              myChart.resize();
+            }, 100);
+          });
+          resizeObserver.observe(chartDom.parentElement);
+
+          // 停止观察
+          observer.unobserve(chartDom);
+        }
+      });
+    });
+
+    // 观察图表容器
+    observer.observe(chartDom);
+  }
+
+  // 初始化学习数据图表
+  initLearningChart();
+});</script> 
+  <!-- [/JSMOD] x0y_学习数据图表 -- 使用echarts绘制学习时长趋势图表，支持响应式调整 -->  
+ </body>
+</html>

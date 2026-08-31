@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="utf-8"> 
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+  <title>非遗文化交流平台 - 登录页</title> 
+  <script src="../javascript/reload.js"></script> 
+  <script src="./1992263647530844160/resource_4481710000.js"></script> 
+  <link href="./1992263647530844160/all.min.css" rel="stylesheet"> 
+  <script>tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#8B5A2B',
+        // 主色调：传统棕色，代表文化底蕴
+        secondary: '#D2B48C',
+        // 辅助色：棕褐色，用于强调和交互元素
+        accent: '#CD5C5C',
+        // 强调色：中国红，用于重要按钮和提示
+        dark: '#3E2723',
+        // 深色：用于文字和标题
+        light: '#F5F5DC',
+        // 浅色：用于背景和卡片
+        muted: '#A0522D' // 中性色：用于次要文字和边框
+      },
+      fontFamily: {
+        song: ['"Noto Serif SC"', 'serif'],
+        // 宋体风格，用于标题
+        kai: ['"Noto Serif SC"', 'serif'] // 楷体风格，用于正文
+      },
+      backgroundImage: {
+        'ink-pattern': "url('https://design.gemcoder.com/staticResource/echoAiSystemImages/a568dcf60f820ed19f04faf063403a2b.png')" // 国风风格背景纹理
+      }
+    }
+  }
+};</script> 
+  <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .ink-border {
+                border-image: url('https://picsum.photos/id/131/100/100') 30 stretch;
+            }
+        }
+    </style>
+  <style>
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+</style> 
+ </head> 
+ <body class="bg-light min-h-screen font-kai text-dark"> 
+  <!-- [MODULE] a1b_登录页面 --> 
+  <div class="w-full h-screen max-w-md mx-auto bg-ink-pattern bg-cover bg-center flex flex-col"> 
+   <!-- [MODULE] c2d_顶部标题栏 --> 
+   <header class="h-14 flex items-center justify-center pt-6"> 
+    <div class="text-center"> 
+    </div> 
+   </header> 
+   <!-- [/MODULE] c2d_顶部标题栏 -- 隐藏式设计，仅显示平台Logo --> 
+   <!-- [MODULE] d3e_内容区 --> 
+   <main class="flex-1 flex flex-col justify-center px-6 py-4"> 
+    <!-- [MODULE] e4f_登录卡片 --> 
+    <div class="bg-white/90 bg-blur rounded-xl shadow-xl p-6 border border-secondary/30 transform transition-all duration-300 hover:shadow-2xl"> 
+     <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-song font-bold text-center text-dark mb-6"> 非遗文化传承平台 </h2> 
+     <!-- [MODULE] f5g_登录表单 --> 
+     <form class="space-y-4" id="loginForm"> 
+      <!-- 用户名/手机号输入框 --> 
+      <div class="relative"> 
+       <label class="block text-sm font-medium text-dark mb-1" for="username"> 用户名/手机号 </label> 
+       <div class="relative"> 
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-muted"> <i class="fas fa-user"> </i> </span> 
+        <input class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" id="username" name="username" placeholder="请输入用户名或手机号" required type="text"> 
+       </div> 
+      </div> 
+      <!-- 密码输入框 --> 
+      <div class="relative"> 
+       <label class="block text-sm font-medium text-dark mb-1" for="password"> 密码 </label> 
+       <div class="relative"> 
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-muted"> <i class="fas fa-lock"> </i> </span> 
+        <input class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" id="password" name="password" placeholder="请输入密码" required type="password"> 
+        <button class="absolute inset-y-0 right-0 flex items-center pr-3 text-muted hover:text-dark transition-colors" id="togglePassword" type="button"> <i class="fas fa-eye-slash"> </i> </button> 
+       </div> 
+      </div> 
+      <!-- 辅助功能链接 --> 
+      <div class="flex justify-between items-center"> 
+       <a class="text-sm text-muted hover:text-accent transition-colors" href="javascript:void(0);"> 忘记密码? </a> 
+       <a class="text-sm text-secondary hover:text-accent transition-colors" href="javascript:void(0);"> 注册账号 </a> 
+      </div> 
+      <!-- 登录按钮 --> 
+      <button class="w-full bg-accent hover:bg-accent/90 text-white font-medium py-3 px-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg flex items-center justify-center" type="submit"> <span> 登录 </span> <i class="fas fa-arrow-right ml-2"> </i> </button> 
+     </form> 
+     <!-- [/MODULE] f5g_登录表单 -- 包含用户名/手机号输入框、密码输入框、登录按钮 --> 
+     <!-- [MODULE] g6h_第三方登录选项 --> 
+     <div class="mt-6"> 
+      <div class="relative flex items-center justify-center mb-4"> 
+       <div class="flex-grow border-t border-gray-300"> 
+       </div> 
+       <span class="flex-shrink mx-4 text-sm text-gray-500"> 其他登录方式 </span> 
+       <div class="flex-grow border-t border-gray-300"> 
+       </div> 
+      </div> 
+      <div class="flex justify-center space-x-6"> 
+       <a class="w-12 h-12 rounded-full bg-[#07C160] flex items-center justify-center text-white shadow-md hover:shadow-lg transition-all transform hover:scale-110 active:scale-95" href="javascript:void(0);"> <i class="fab fa-weixin text-lg"> </i> </a> 
+       <a class="w-12 h-12 rounded-full bg-[#1DA1F2] flex items-center justify-center text-white shadow-md hover:shadow-lg transition-all transform hover:scale-110 active:scale-95" href="javascript:void(0);"> <i class="fab fa-qq text-lg"> </i> </a> 
+       <a class="w-12 h-12 rounded-full bg-[#E4405F] flex items-center justify-center text-white shadow-md hover:shadow-lg transition-all transform hover:scale-110 active:scale-95" href="javascript:void(0);"> <i class="fab fa-weibo text-lg"> </i> </a> 
+      </div> 
+     </div> 
+     <!-- [/MODULE] g6h_第三方登录选项 -- 包含微信、QQ、微博登录方式 --> 
+    </div> 
+    <!-- [/MODULE] e4f_登录卡片 -- 包含登录表单和第三方登录选项 --> 
+    <!-- [MODULE] h7i_平台slogan --> 
+    <div class="mt-8 text-center"> 
+     <p class="text-light font-song text-shadow text-lg"> 古典与现代完美邂逅 </p> 
+     <p class="text-light/80 text-sm mt-1"> 传承非遗文化，连接古今智慧 </p> 
+    </div> 
+    <!-- [/MODULE] h7i_平台slogan -- 底部显示平台slogan和文化底蕴提示 --> 
+   </main> 
+   <!-- [/MODULE] d3e_内容区 -- 包含登录卡片和平台slogan --> 
+   <!-- [MODULE] i8j_底部区域 --> 
+   <footer class="py-4 px-6 text-center text-white/70 text-xs"> 
+    <p> © 2023 非遗文化传承平台 版权所有 </p> 
+    <p class="mt-1"> 版本 v1.0.0 </p> 
+   </footer> 
+   <!-- [/MODULE] i8j_底部区域 -- 显示版权信息和版本号 --> 
+  </div> 
+  <!-- [/MODULE] a1b_登录页面 --> 
+  <!-- [JSMOD] j9k_登录功能 --> 
+  <script id="loginScript">document.addEventListener('DOMContentLoaded', function () {
+  // 密码显示/隐藏切换
+  var togglePassword = document.getElementById('togglePassword');
+  var passwordInput = document.getElementById('password');
+  togglePassword.addEventListener('click', function () {
+    var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+
+    // 切换图标
+    var icon = togglePassword.querySelector('i');
+    icon.classList.toggle('fa-eye');
+    icon.classList.toggle('fa-eye-slash');
+  });
+
+  // 登录表单提交处理
+  var loginForm = document.getElementById('loginForm');
+  loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // 获取表单数据
+    var formData = new FormData(loginForm);
+    var username = formData.get('username');
+    var password = formData.get('password');
+
+    // 简单的表单验证
+    if (!username || !password) {
+      alert('请输入用户名和密码');
+      return;
+    }
+
+    // 模拟登录请求
+    simulateLogin(username, password);
+  });
+
+  // 模拟登录函数
+  function simulateLogin(username, password) {
+    // 显示加载状态
+    var submitButton = loginForm.querySelector('button[type="submit"]');
+    var originalText = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>登录中...';
+
+    // 模拟API请求延迟
+    setTimeout(function () {
+      // 这里应该是真实的API调用
+      // 模拟登录成功
+      if (username && password) {
+        // 跳转到新手指引页
+        window.location.href = '#guide'; // 在实际应用中应该是真实的页面URL
+        alert('登录成功！即将进入新手指引');
+      } else {
+        alert('用户名或密码错误，请重试');
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+      }
+    }, 1500);
+  }
+
+  // 添加输入框聚焦效果
+  var inputFields = loginForm.querySelectorAll('input');
+  inputFields.forEach(function (input) {
+    input.addEventListener('focus', function () {
+      var parentDiv = input.closest('div.relative');
+      parentDiv.classList.add('scale-[1.02]');
+      parentDiv.style.transition = 'transform 0.2s ease';
+    });
+    input.addEventListener('blur', function () {
+      var parentDiv = input.closest('div.relative');
+      parentDiv.classList.remove('scale-[1.02]');
+    });
+  });
+});</script> 
+  <!-- [/JSMOD] j9k_登录功能 -- 处理密码显示/隐藏切换、表单提交验证和登录逻辑 -->  
+ </body>
+</html>

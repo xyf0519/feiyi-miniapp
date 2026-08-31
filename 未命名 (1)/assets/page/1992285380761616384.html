@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="utf-8"> 
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"> 
+  <title>雕刻意识讲解 - 视频播放</title> 
+  <script src="./1992285380761616384/resource_6157910000.js"></script> 
+  <link href="./1992285380761616384/all.min.css" rel="stylesheet"> 
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        dark: '#1D2129',
+                        'dark-light': '#4E5969',
+                        'gray-light': '#C9CDD4',
+                        'bg-black': '#000000',
+                        'bg-black-light': '#1A1A1A'
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '22': '5.5rem'
+                    }
+                }
+            }
+        };
+    </script> 
+  <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .video-container {
+                aspect-ratio: 16 / 9;
+            }
+            .progress-bar-thumb {
+                @apply w-3 h-3 bg-white rounded-full absolute top-1/2 -translate-y-1/2 shadow-lg transition-all duration-150;
+            }
+            .progress-bar-thumb:hover {
+                @apply w-4 h-4;
+            }
+        }
+    </style>
+  <style>
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+</style> 
+ </head> 
+ <body class="bg-black text-white overflow-hidden"> 
+  <!-- [MODULE] a1b_视频播放页面 --> 
+  <div class="relative w-full h-screen flex flex-col bg-bg-black landscape-mode"> 
+   <!-- [MODULE] c3d_视频播放区域 --> 
+   <div class="relative flex-1 video-container bg-bg-black-light" data-ytextravalue="extra-a4sni1a4p"> 
+    <!-- 视频播放器 --> 
+    <video class="w-full h-full object-contain yt-editor" id="videoPlayer" poster="https://design.gemcoder.com/staticResource/echoAiSystemImages/7657bc2901417e27b6ccdbd52b4183a3.png" style="opacity: 1; cursor: ew-resize; outline: none;" data-ytparentvalue="extra-a4sni1a4p" data-ytoriginindex="0" data-ytindex="0" contenteditable="false"> 
+     <source src="javascript:void(0);" type="video/mp4"> 
+    </video> 
+    <!-- [MODULE] e5f_视频控制栏：顶部信息 --> 
+    <div class="absolute top-0 left-0 right-0 flex items-center p-4 z-10" data-ytoriginindex="1" data-ytindex="1"> 
+     <!-- 返回按钮 --> 
+     <button class="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center backdrop-blur-sm hover:bg-black/70 transition-colors mr-4" id="backButton"> <i class="fas fa-arrow-left text-white"></i> </button> 
+     <!-- 视频标题 --> 
+     <h1 class="text-white text-lg font-medium truncate yt-editor" style="outline: none;" contenteditable="false"> 雕刻意识讲解 </h1> 
+    </div> 
+    <!-- [/MODULE] e5f_视频控制栏：顶部信息 -- 包含返回按钮和视频标题 --> 
+    <!-- [MODULE] g7h_视频控制栏：底部控制 --> 
+    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 z-10" id="videoControls" data-ytoriginindex="2" data-ytindex="2"> 
+     <!-- 进度条 --> 
+     <div class="relative h-2 bg-gray-600/50 rounded-full mb-4 cursor-pointer group" id="progressContainer"> 
+      <div class="absolute top-0 left-0 h-full bg-primary rounded-full w-0%" id="progressBar"></div> 
+      <div class="absolute top-0 left-0 h-full bg-primary/30 rounded-full w-0%" id="progressBuffer"></div> 
+      <div class="progress-bar-thumb opacity-0 group-hover:opacity-100 left-0%" id="progressThumb"></div> 
+     </div> 
+     <!-- 控制按钮和时间信息 --> 
+     <div class="flex items-center justify-between"> 
+      <div class="flex items-center space-x-8"> 
+       <button class="text-white hover:text-primary transition-colors text-xl" id="playPauseButton"> <i class="fas fa-play text-xl"></i> </button> 
+      </div> 
+      <div class="text-white text-sm"> 
+       <span id="currentTime">00:00</span> 
+       <span class="mx-2">/</span> 
+       <span id="totalTime">00:00</span> 
+      </div> 
+     </div> 
+    </div> 
+    <!-- [/MODULE] g7h_视频控制栏：底部控制 -- 包含进度条、播放/暂停按钮和时间显示 --> 
+   </div> 
+   <!-- [/MODULE] c3d_视频播放区域 -- 视频播放器及相关控制元素 --> 
+  </div> 
+  <!-- [/MODULE] a1b_视频播放页面 -- 横屏视频播放界面，包含返回按钮、视频标题和进度条 --> 
+  <!-- [JSMOD] v9x_视频播放控制逻辑 --> 
+  <script id="videoPlayerScript">document.addEventListener('DOMContentLoaded', function () {
+        // 获取DOM元素
+        var videoPlayer = document.getElementById('videoPlayer');
+        var playPauseButton = document.getElementById('playPauseButton');
+        var progressBar = document.getElementById('progressBar');
+        var progressBuffer = document.getElementById('progressBuffer');
+        var progressThumb = document.getElementById('progressThumb');
+        var progressContainer = document.getElementById('progressContainer');
+        var currentTimeDisplay = document.getElementById('currentTime');
+        var totalTimeDisplay = document.getElementById('totalTime');
+        var videoControls = document.getElementById('videoControls');
+        var backButton = document.getElementById('backButton');
+        
+        // 控制栏显示/隐藏相关变量
+        var controlsTimeout;
+        var CONTROLS_HIDE_DELAY = 3000;
+        
+        // 格式化时间显示
+        function formatTime(seconds) {
+            var minutes = Math.floor(seconds / 60);
+            var remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 更新进度条
+        function updateProgress() {
+            if (videoPlayer.duration) {
+                var percent = videoPlayer.currentTime / videoPlayer.duration * 100;
+                progressBar.style.width = `${percent}%`;
+                progressThumb.style.left = `${percent}%`;
+                currentTimeDisplay.textContent = formatTime(videoPlayer.currentTime);
+            }
+            
+            // 更新缓冲进度
+            if (videoPlayer.buffered.length > 0) {
+                var bufferedEnd = videoPlayer.buffered.end(videoPlayer.buffered.length - 1);
+                var duration = videoPlayer.duration;
+                if (duration > 0) {
+                    var bufferedPercent = bufferedEnd / duration * 100;
+                    progressBuffer.style.width = `${bufferedPercent}%`;
+                }
+            }
+        }
+        
+        // 显示控制栏
+        function showControls() {
+            videoControls.classList.remove('opacity-0');
+            videoControls.classList.add('opacity-100');
+            
+            // 清除之前的超时隐藏
+            clearTimeout(controlsTimeout);
+            
+            // 设置自动隐藏
+            controlsTimeout = setTimeout(hideControls, CONTROLS_HIDE_DELAY);
+        }
+        
+        // 隐藏控制栏
+        function hideControls() {
+            if (!videoPlayer.paused) {
+                videoControls.classList.remove('opacity-100');
+                videoControls.classList.add('opacity-0');
+            }
+        }
+        
+        // 切换播放/暂停状态
+        function togglePlayPause() {
+            if (videoPlayer.paused || videoPlayer.ended) {
+                videoPlayer.play().then(function () {
+                    playPauseButton.innerHTML = '<i class="fas fa-pause text-xl"></i>';
+                    showControls();
+                }).catch(function (error) {
+                    console.error('播放失败:', error);
+                    alert('视频播放失败，请检查网络连接');
+                });
+            } else {
+                videoPlayer.pause();
+                playPauseButton.innerHTML = '<i class="fas fa-play text-xl"></i>';
+                showControls();
+            }
+        }
+        
+        // 点击进度条跳转
+        function seek(e) {
+            var rect = progressContainer.getBoundingClientRect();
+            var pos = (e.clientX - rect.left) / rect.width;
+            videoPlayer.currentTime = pos * videoPlayer.duration;
+        }
+        
+        // 处理返回按钮点击
+        function handleBackButton() {
+            // 在实际应用中，这里应该是返回上一页的逻辑
+            // 这里使用history.back()作为示例
+            history.back();
+            // 如果history.back()不可用，使用alert提示
+            setTimeout(function () {
+                alert('返回上一页');
+            }, 100);
+        }
+        
+        // 事件监听
+        playPauseButton.addEventListener('click', togglePlayPause);
+        videoPlayer.addEventListener('click', togglePlayPause);
+        videoPlayer.addEventListener('timeupdate', updateProgress);
+        videoPlayer.addEventListener('loadedmetadata', function () {
+            totalTimeDisplay.textContent = formatTime(videoPlayer.duration);
+        });
+        videoPlayer.addEventListener('progress', updateProgress);
+        progressContainer.addEventListener('click', seek);
+        
+        // 控制栏显示/隐藏相关事件
+        videoPlayer.addEventListener('mousemove', showControls);
+        videoControls.addEventListener('mousemove', showControls);
+        videoPlayer.addEventListener('play', showControls);
+        videoPlayer.addEventListener('pause', showControls);
+        
+        // 返回按钮事件
+        backButton.addEventListener('click', handleBackButton);
+        
+        // 初始化显示控制栏
+        showControls();
+        
+        // 模拟视频加载完成（实际应用中不需要）
+        setTimeout(function () {
+            totalTimeDisplay.textContent = "05:24";
+            progressBuffer.style.width = "65%";
+        }, 1000);
+    });</script> 
+  <!-- [/JSMOD] v9x_视频播放控制逻辑 -- 处理视频播放、暂停、进度更新、时间格式化和控制栏显示隐藏等功能 -->   
+ </body>
+</html>

@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="utf-8"> 
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"> 
+  <title>
+   非遗知识答题
+  </title> 
+  <script src="../javascript/reload.js">
+  </script> 
+  <script src="./1992295671863967744/resource_5282710000.js">
+  </script> 
+  <link href="./1992295671863967744/all.min.css" rel="stylesheet"> 
+  <script>
+   tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#8B4513',
+        secondary: '#D2B48C',
+        accent: '#CD853F',
+        dark: '#5D4037',
+        light: '#F5DEB3',
+        cream: '#FFF8DC',
+        paper: '#FFF8DC',
+        'color-red': '#E53E3E',
+        'color-blue': '#3182CE',
+        'color-green': '#38A169',
+        'color-yellow': '#DD6B20',
+        'color-purple': '#805AD5',
+        'color-black': '#2D3748'
+      },
+      fontFamily: {
+        song: ['"Noto Serif SC"', 'serif'],
+        kai: ['"Noto Serif SC"', 'serif']
+      },
+      boxShadow: {
+        'inner-lg': 'inset 0 2px 10px 0 rgba(0, 0, 0, 0.1)',
+        'paper': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(139, 69, 19, 0.1)'
+      }
+    }
+  }
+};
+  </script> 
+  <style type="text/tailwindcss">
+   @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            }
+            .bg-paper {
+                background-color: #FFF8DC;
+                background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmOGRjIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGUwZDAiPjwvcmVjdD4KPC9zdmc+');
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .notebook-line {
+                background-image: linear-gradient(to bottom, transparent 0%, transparent 85%, #D2B48C 85%, #D2B48C 100%);
+                background-size: 100% 2rem;
+            }
+            .notebook-margin {
+                background-image: linear-gradient(to right, #F5DEB3 0%, #F5DEB3 24px, transparent 24px, transparent 100%);
+            }
+            .pen-brush {
+                border-radius: 50%;
+                transition: transform 0.2s ease;
+            }
+            .pen-brush:hover {
+                transform: scale(1.2);
+            }
+            .pen-brush.active {
+                transform: scale(1.2);
+                box-shadow: 0 0 0 2px white, 0 0 0 4px #8B4513;
+            }
+            .tool-btn {
+                transition: all 0.2s ease;
+            }
+            .tool-btn:hover {
+                background-color: rgba(139, 69, 19, 0.1);
+            }
+            .tool-btn.active {
+                background-color: rgba(139, 69, 19, 0.2);
+                color: #8B4513;
+            }
+            .option-card {
+                transition: all 0.2s ease;
+            }
+            .option-card:hover {
+                transform: translateY(-2px);
+            }
+            .option-card.selected {
+                border-color: #8B4513;
+                background-color: rgba(139, 69, 19, 0.1);
+            }
+            .option-card.correct {
+                border-color: #38A169;
+                background-color: rgba(56, 161, 105, 0.1);
+            }
+            .option-card.incorrect {
+                border-color: #E53E3E;
+                background-color: rgba(229, 62, 62, 0.1);
+            }
+        }
+  </style>
+  <style>
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+</style> 
+ </head> 
+ <body class="bg-paper min-h-screen font-song text-dark overflow-x-hidden"> 
+  <!-- [MODULE] abc_页面容器 --> 
+  <div class="min-h-screen flex flex-col"> 
+   <!-- [MODULE] def_顶部导航栏 --> 
+   <header class="bg-primary text-cream shadow-md sticky top-0 z-50"> 
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between"> 
+     <!-- [MODULE] ghi_顶部导航栏:返回按钮 --> 
+     <div class="flex items-center space-x-2"> 
+      <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors" id="back-button"> <i class="fas fa-arrow-left text-lg"> </i> </button> 
+      <h1 class="text-xl font-kai font-bold"> 非遗知识答题 </h1> 
+     </div> 
+     <!-- [/MODULE] ghi_顶部导航栏:返回按钮 -- 提供返回上一级功能 --> 
+     <!-- [MODULE] jkl_顶部导航栏:功能按钮区 --> 
+     <div class="flex items-center space-x-3" data-ytextravalue="extra-6479oy2uy"> 
+      <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors" data-ytextravalue="extra-2438p8tqj" data-ytindex="0" data-ytoriginindex="0"> </button> 
+      <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors" data-ytindex="2" data-ytoriginindex="2"> </button> 
+     </div> 
+     <!-- [/MODULE] jkl_顶部导航栏:功能按钮区 -- 包含帮助和设置按钮 --> 
+    </div> 
+    <!-- [MODULE] mno_顶部导航栏:答题进度 --> 
+    <div class="bg-primary/90 px-4 py-2"> 
+     <div class="flex justify-between items-center mb-1"> 
+      <span class="text-cream/80 text-sm"> 第 1 题 / 共 10 题 </span> 
+      <span class="text-cream/80 text-sm"> 单选题 </span> 
+     </div> 
+     <div class="w-full bg-secondary/30 rounded-full h-1.5"> 
+      <div class="bg-secondary h-1.5 rounded-full" style="width: 10%"> 
+      </div> 
+     </div> 
+    </div> 
+    <!-- [/MODULE] mno_顶部导航栏:答题进度 -- 显示当前答题进度和题目类型 --> 
+   </header> 
+   <!-- [/MODULE] def_顶部导航栏 -- 移动端顶部导航，包含返回按钮、标题、功能按钮和答题进度 --> 
+   <!-- [MODULE] pqr_主内容区域 --> 
+   <main class="flex-grow container mx-auto px-4 py-4"> 
+    <!-- [MODULE] stu_答题区域:题目卡片 --> 
+    <div class="bg-cream rounded-lg shadow-paper border border-secondary/30 p-5 mb-6 transform transition-all duration-300 hover:shadow-lg" style="padding-left:20px"> 
+     <div class="min-h-[200px] p-4 pt-6 pr-2" style="padding-left:16px;width:;height:"> 
+      <h2 class="text-lg font-kai font-bold text-primary mb-6 leading-relaxed"> 迎大旗作为部分地区的传统非遗项目，其核心特色不包括以下哪一项？ </h2> 
+      <!-- [MODULE] vwx_答题区域:题目选项 --> 
+      <div class="space-y-4 mt-4"> 
+       <!-- [MODULE] yza_答题区域:题目选项:A选项 --> 
+       <div class="option-card border border-secondary rounded-lg p-3 pl-10 relative cursor-pointer" data-option="A"> 
+        <div class="absolute left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-secondary font-bold">
+          A 
+        </div> 
+        <p class="text-dark/90"> 通常需要数十人协作完成大旗的升起与挥舞 </p> 
+       </div> 
+       <!-- [/MODULE] yza_答题区域:题目选项:A选项 -- 单选题选项A，点击可选择 --> 
+       <!-- [MODULE] bcd_答题区域:题目选项:B选项 --> 
+       <div class="option-card border border-secondary rounded-lg p-3 pl-10 relative cursor-pointer" data-option="B"> 
+        <div class="absolute left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-secondary font-bold">
+          B 
+        </div> 
+        <p class="text-dark/90"> 大旗的纹样多融入当地历史故事或吉祥寓意 </p> 
+       </div> 
+       <!-- [/MODULE] bcd_答题区域:题目选项:B选项 -- 单选题选项B，点击可选择 --> 
+       <!-- [MODULE] efg_答题区域:题目选项:C选项 --> 
+       <div class="option-card border border-secondary rounded-lg p-3 pl-10 relative cursor-pointer" data-option="C"> 
+        <div class="absolute left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-secondary font-bold">
+          C 
+        </div> 
+        <p class="text-dark/90"> 活动常与端午赛龙舟习俗结合开展 </p> 
+       </div> 
+       <!-- [/MODULE] efg_答题区域:题目选项:C选项 -- 单选题选项C，点击可选择 --> 
+       <!-- [MODULE] hij_答题区域:题目选项:D选项 --> 
+       <div class="option-card border border-secondary rounded-lg p-3 pl-10 relative cursor-pointer" data-option="D"> 
+        <div class="absolute left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-secondary font-bold">
+          D 
+        </div> 
+        <p class="text-dark/90"> 部分地区的大旗杆高度可达十余米，材质以实木为主 </p> 
+       </div> 
+       <!-- [/MODULE] hij_答题区域:题目选项:D选项 -- 单选题选项D，点击可选择 --> 
+      </div> 
+      <!-- [/MODULE] vwx_答题区域:题目选项 -- 包含四个单选题选项 --> 
+     </div> 
+     <!-- 手写笔记区域已移除 --> 
+    </div> 
+    <!-- [/MODULE] stu_答题区域:题目卡片 -- 显示当前题目内容和选项 --> 
+    <!-- 工具栏区域已移除 --> 
+   </main> 
+   <!-- [/MODULE] pqr_主内容区域 -- 包含题目卡片和笔记工具栏 --> 
+   <!-- [MODULE] wxy_底部导航栏 --> 
+   <footer class="bg-cream border-t border-secondary/30 py-3 px-4 sticky bottom-0 z-40"> 
+    <div class="flex justify-between items-center"> 
+     <button class="px-4 py-2 border border-secondary text-primary rounded-lg hover:bg-primary/5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled id="prev-btn"> <i class="fas fa-arrow-left mr-1"> </i> 上一题 </button> 
+     <button class="px-6 py-2 bg-primary text-cream rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled id="next-btn"> 下一题 <i class="fas fa-arrow-right ml-1"> </i> </button> 
+    </div> 
+   </footer> 
+   <!-- [/MODULE] wxy_底部导航栏 -- 提供上一题和下一题导航功能 --> 
+   <!-- [MODULE] z12_答题结果模态框 --> 
+   <div class="fixed inset-0 bg-dark/50 z-50 hidden flex items-center justify-center p-4" id="result-modal"> 
+    <div class="bg-cream rounded-lg shadow-xl w-full max-w-md border-2 border-secondary transform transition-all duration-300 scale-95 opacity-0" id="modal-content"> 
+     <div class="p-4 border-b border-secondary flex justify-between items-center"> 
+      <h2 class="font-kai font-bold text-xl text-primary"> 答题结果 </h2> 
+      <button class="p-2 rounded-full hover:bg-secondary/20 transition-colors" id="close-result-modal"> <i class="fas fa-times text-primary"> </i> </button> 
+     </div> 
+     <div class="p-6 text-center"> 
+      <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"> 
+       <i class="fas fa-check text-3xl text-primary" id="result-icon"> </i> 
+      </div> 
+      <h3 class="font-kai font-bold text-lg text-primary mb-2" id="result-title"> 回答正确 </h3> 
+      <p class="text-sm text-dark/80 mb-6" id="result-desc"> 迎大旗活动通常与当地传统节日结合，而非端午赛龙舟习俗。赛龙舟是水上活动，与迎大旗的陆地表演形式差异较大。 </p> 
+      <div class="flex justify-center space-x-3"> 
+       <button class="px-4 py-2 border border-secondary text-primary rounded-lg hover:bg-primary/5 transition-colors text-sm" id="view-explain-btn"> 查看详细解析 </button> 
+       <button class="px-6 py-2 bg-primary text-cream rounded-lg hover:bg-primary/90 transition-colors text-sm" id="confirm-result-btn"> 继续答题 </button> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <!-- [/MODULE] z12_答题结果模态框 -- 显示答题结果和解析 --> 
+  </div> 
+  <!-- [/MODULE] abc_页面容器 -- 包含整个答题页面的所有内容 --> 
+  <!-- [JSMOD] a3b_手写笔记功能 --> 
+  <script id="note-script">
+   // 页面加载时初始化渲染
+document.addEventListener('DOMContentLoaded', function () {
+  // 获取DOM元素
+  var noteArea = document.getElementById('note-area');
+  var penBrushes = document.querySelectorAll('.pen-brush');
+  var undoBtn = document.getElementById('undo-btn');
+  var clearBtn = document.getElementById('clear-btn');
+
+  // 绘画状态变量
+  var isDrawing = false;
+  var lastX = 0;
+  var lastY = 0;
+  var currentColor = '#2D3748';
+  var currentSize = 2;
+  var drawingHistory = [];
+  var historyIndex = -1;
+
+  // 创建canvas元素
+  function initCanvas() {
+    var canvas = document.createElement('canvas');
+    canvas.id = 'drawing-canvas';
+    canvas.width = noteArea.offsetWidth;
+    canvas.height = noteArea.offsetHeight;
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.touchAction = 'none'; // 防止触摸滚动
+    noteArea.appendChild(canvas);
+
+    // 调整canvas大小
+    function resizeCanvas() {
+      var tempCanvas = document.createElement('canvas');
+      var tempCtx = tempCanvas.getContext('2d');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      tempCtx.drawImage(canvas, 0, 0);
+      canvas.width = noteArea.offsetWidth;
+      canvas.height = noteArea.offsetHeight;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(tempCanvas, 0, 0);
+    }
+
+    // 监听窗口大小变化
+    window.addEventListener('resize', resizeCanvas);
+    return canvas;
+  }
+
+  // 初始化canvas
+  var canvas = initCanvas();
+  var ctx = canvas.getContext('2d');
+
+  // 设置画笔样式
+  ctx.strokeStyle = currentColor;
+  ctx.lineWidth = currentSize;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  // 保存当前画布状态到历史记录
+  function saveToHistory() {
+    // 如果在历史记录中间添加新操作，删除后面的历史
+    if (historyIndex < drawingHistory.length - 1) {
+      drawingHistory = drawingHistory.slice(0, historyIndex + 1);
+    }
+
+    // 将当前画布状态保存为图像数据URL
+    drawingHistory.push(canvas.toDataURL());
+    historyIndex = drawingHistory.length - 1;
+  }
+
+  // 从历史记录恢复画布状态
+  function restoreFromHistory(index) {
+    if (index < 0 || index >= drawingHistory.length) return;
+    var img = new Image();
+    img.onload = function () {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0);
+    };
+    img.src = drawingHistory[index];
+    historyIndex = index;
+  }
+
+  // 开始绘画
+  function startDrawing(e) {
+    isDrawing = true;
+
+    // 获取触摸或鼠标位置
+    var rect = canvas.getBoundingClientRect();
+    var clientX, clientY;
+    if (e.type.includes('touch')) {
+      clientX = e.touches[0].clientX - rect.left;
+      clientY = e.touches[0].clientY - rect.top;
+    } else {
+      clientX = e.clientX - rect.left;
+      clientY = e.clientY - rect.top;
+    }
+    // 保存当前状态到历史记录
+    lastX = clientX;
+    lastY = clientY;
+    saveToHistory();
+  }
+
+  // 绘制中
+  function draw(e) {
+    if (!isDrawing) return;
+    e.preventDefault();
+
+    // 获取触摸或鼠标位置
+    var rect = canvas.getBoundingClientRect();
+    var clientX, clientY;
+    if (e.type.includes('touch')) {
+      clientX = e.touches[0].clientX - rect.left;
+      clientY = e.touches[0].clientY - rect.top;
+    } else {
+      clientX = e.clientX - rect.left;
+      clientY = e.clientY - rect.top;
+    }
+
+    // 绘制线条
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(clientX, clientY);
+    ctx.stroke();
+    lastX = clientX;
+    lastY = clientY;
+  }
+
+  // 结束绘画
+  function stopDrawing() {
+    isDrawing = false;
+  }
+
+  // 撤销操作
+  function undoDrawing() {
+    if (historyIndex > 0) {
+      restoreFromHistory(historyIndex - 1);
+    } else if (historyIndex === 0) {
+      // 清除画布
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawingHistory = [];
+      historyIndex = -1;
+    }
+  }
+
+  // 清除画布
+  function clearDrawing() {
+    saveToHistory(); // 保存清除前的状态
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  // 选择画笔颜色和大小
+  function selectPenBrush(brush) {
+    // 移除所有active类
+    penBrushes.forEach(function (b) {
+      return b.classList.remove('active');
+    });
+
+    // 为当前选中的画笔添加active类
+    brush.classList.add('active');
+
+    // 更新当前颜色和大小
+    if (brush.dataset.color) {
+      currentColor = brush.dataset.color;
+      ctx.strokeStyle = currentColor;
+    }
+    if (brush.dataset.size) {
+      currentSize = parseInt(brush.dataset.size);
+      ctx.lineWidth = currentSize;
+    }
+  }
+
+  // 添加事件监听器
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseout', stopDrawing);
+
+  // 触摸事件
+  canvas.addEventListener('touchstart', startDrawing);
+  canvas.addEventListener('touchmove', draw);
+  canvas.addEventListener('touchend', stopDrawing);
+  canvas.addEventListener('touchcancel', stopDrawing);
+
+  // 阻止触摸事件的默认行为（防止滚动）
+  noteArea.addEventListener('touchstart', function (e) {
+    return e.preventDefault();
+  });
+  noteArea.addEventListener('touchmove', function (e) {
+    return e.preventDefault();
+  });
+
+  // 画笔选择事件
+  penBrushes.forEach(function (brush) {
+    brush.addEventListener('click', function () {
+      return selectPenBrush(brush);
+    });
+  });
+
+  // 撤销按钮事件
+  undoBtn.addEventListener('click', undoDrawing);
+
+  // 清除按钮事件
+  clearBtn.addEventListener('click', clearDrawing);
+});
+  </script> 
+  <!-- [/JSMOD] a3b_手写笔记功能 -- 实现手写笔记的绘制、撤销、清除和画笔选择功能 --> 
+  <!-- [JSMOD] c4d_答题逻辑功能 --> 
+  <script id="quiz-script">
+   // 页面加载时初始化渲染
+document.addEventListener('DOMContentLoaded', function () {
+  // 获取DOM元素
+  var optionCards = document.querySelectorAll('.option-card');
+  var nextBtn = document.getElementById('next-btn');
+  var prevBtn = document.getElementById('prev-btn');
+  var resultModal = document.getElementById('result-modal');
+  var modalContent = document.getElementById('modal-content');
+  var closeResultModal = document.getElementById('close-result-modal');
+  var confirmResultBtn = document.getElementById('confirm-result-btn');
+  var timerEl = document.getElementById('timer');
+
+  // 答题状态变量
+  var selectedOption = null;
+  var timeLeft = 10 * 60; // 10分钟，单位秒
+  var timerInterval;
+
+  // 初始化计时器
+  function initTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(function () {
+      timeLeft--;
+      updateTimerDisplay();
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        // 时间到，自动提交
+        submitAnswer();
+      }
+    }, 1000);
+  }
+
+  // 更新计时器显示
+  function updateTimerDisplay() {
+    var minutes = Math.floor(timeLeft / 60);
+    var seconds = timeLeft % 60;
+    timerEl.textContent = "".concat(minutes.toString().padStart(2, '0'), ":").concat(seconds.toString().padStart(2, '0'));
+
+    // 时间少于1分钟时变红
+    if (timeLeft < 60) {
+      timerEl.classList.add('bg-red-500');
+      timerEl.classList.remove('bg-accent');
+    }
+  }
+
+  // 选择答案
+  function selectOption(option) {
+    // 移除之前的选择
+    optionCards.forEach(function (card) {
+      card.classList.remove('selected');
+      card.querySelector('div').classList.remove('bg-primary', 'text-cream');
+      card.querySelector('div').classList.add('border-secondary', 'text-secondary');
+    });
+
+    // 设置新选择
+    selectedOption = option.dataset.option;
+    option.classList.add('selected');
+    var optionLetter = option.querySelector('div');
+    optionLetter.classList.remove('border-secondary', 'text-secondary');
+    optionLetter.classList.add('bg-primary', 'text-cream');
+
+    // 启用下一题按钮
+    nextBtn.disabled = false;
+  }
+
+  // 提交答案
+  function submitAnswer() {
+    clearInterval(timerInterval);
+
+    // 检查答案是否正确（正确答案是C）
+    var isCorrect = selectedOption === 'C';
+
+    // 显示结果模态框
+    showResultModal(isCorrect);
+  }
+
+  // 显示结果模态框
+  function showResultModal(isCorrect) {
+    var resultIcon = document.getElementById('result-icon');
+    var resultTitle = document.getElementById('result-title');
+
+    // 设置结果图标和标题
+    if (isCorrect) {
+      resultIcon.className = 'fas fa-check text-3xl text-green-500';
+      resultTitle.textContent = '回答正确';
+      resultTitle.classList.add('text-green-500');
+      resultTitle.classList.remove('text-red-500');
+    } else {
+      resultIcon.className = 'fas fa-times text-3xl text-red-500';
+      resultTitle.textContent = '回答错误';
+      resultTitle.classList.add('text-red-500');
+      resultTitle.classList.remove('text-green-500');
+
+      // 标记正确答案
+      optionCards.forEach(function (card) {
+        if (card.dataset.option === 'C') {
+          card.classList.add('correct');
+          var optionLetter = card.querySelector('div');
+          optionLetter.classList.remove('border-secondary', 'text-secondary');
+          optionLetter.classList.add('bg-green-500', 'text-white');
+        }
+
+        // 标记错误答案
+        if (card.dataset.option === selectedOption) {
+          card.classList.add('incorrect');
+        }
+      });
+    }
+
+    // 显示模态框
+    resultModal.classList.remove('hidden');
+    resultModal.classList.add('flex');
+
+    // 添加动画效果
+    setTimeout(function () {
+      modalContent.classList.remove('scale-95', 'opacity-0');
+      modalContent.classList.add('scale-100', 'opacity-100');
+    }, 10);
+  }
+
+  // 关闭结果模态框
+  function hideResultModal() {
+    modalContent.classList.remove('scale-100', 'opacity-100');
+    modalContent.classList.add('scale-95', 'opacity-0');
+    setTimeout(function () {
+      resultModal.classList.add('hidden');
+      resultModal.classList.remove('flex');
+
+      // 这里可以添加跳转到下一题的逻辑
+      // 实际应用中应该加载新的题目
+      alert('将进入下一题');
+    }, 300);
+  }
+
+  // 添加事件监听器
+  optionCards.forEach(function (option) {
+    option.addEventListener('click', function () {
+      return selectOption(option);
+    });
+  });
+
+  // 下一题按钮事件
+  nextBtn.addEventListener('click', submitAnswer);
+
+  // 关闭结果模态框事件
+  closeResultModal.addEventListener('click', hideResultModal);
+  confirmResultBtn.addEventListener('click', hideResultModal);
+
+  // 点击模态框背景关闭
+  resultModal.addEventListener('click', function (e) {
+    if (e.target === resultModal) {
+      hideResultModal();
+    }
+  });
+
+  // 初始化计时器
+  initTimer();
+});
+  </script> 
+  <!-- [/JSMOD] c4d_答题逻辑功能 -- 实现答题选择、答案提交、结果判断和计时器功能 --> 
+  <!-- [JSMOD] e5f_页面导航功能 --> 
+  <script id="nav-script">
+   // 页面加载时初始化渲染
+document.addEventListener('DOMContentLoaded', function () {
+  var backButton = document.getElementById('back-button');
+
+  // 返回按钮事件
+  backButton.addEventListener('click', function () {
+    if (confirm('确定要退出当前答题吗？未完成的答题将不被保存。')) {
+      window.history.back();
+    }
+  });
+});
+  </script> 
+  <!-- [/JSMOD] e5f_页面导航功能 -- 实现返回按钮功能 -->   
+ </body>
+</html>

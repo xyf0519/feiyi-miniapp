@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="utf-8"> 
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"> 
+  <title>
+   工匠精神 | 手工艺术展示
+  </title> 
+  <script src="../javascript/reload.js">
+  </script> 
+  <script src="./1992293231345270784/resource_8249610000.js">
+  </script> 
+  <link href="./1992293231345270784/all.min.css" rel="stylesheet"> 
+  <script>
+   tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B4513', // 木材棕色作为主色调
+                        secondary: '#333333', // 深灰色作为辅助色
+                        accent: '#F5F5DC', // 米白色作为强调色
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+  </script> 
+  <style type="text/tailwindcss">
+   @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+        }
+  </style>
+  <style>
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+</style> 
+ </head> 
+ <body class="min-h-screen bg-gray-100 overflow-x-hidden"> 
+  <!-- [MODULE] a7b_主内容区域 --> 
+  <div class="relative min-h-screen flex flex-col"> 
+   <!-- [MODULE] x3f_背景图片区域 --> 
+   <div class="absolute inset-0 z-0"> 
+    <img alt="工匠雕刻艺术" class="w-full h-full object-cover" src="./1992293231345270784/061a30a8dbc7198638eadd40390cde96.png"> 
+    <div class="absolute inset-0 bg-black/40"> 
+    </div> 
+   </div> 
+   <!-- [/MODULE] x3f_背景图片区域 -- 全屏展示工匠雕刻的背景图片，添加半透明黑色遮罩增强文字可读性 --> 
+   <!-- [MODULE] p9k_内容叠加区域 --> 
+   <div class="relative z-10 flex flex-col justify-end items-center p-8 pb-20 text-white w-full"> 
+    <!-- [MODULE] z2d_标题文字区域 --> 
+    <h1 class="text-[clamp(2rem,8vw,4rem)] font-bold leading-tight text-center mb-4 text-shadow"> 每一刀雕琢的峰转 </h1> 
+    <!-- [/MODULE] z2d_标题文字区域 -- 展示主标题文字，使用响应式字体大小和文字阴影效果 --> 
+    <!-- [MODULE] q5t_副标题描述区域 --> 
+    <p class="text-[clamp(1rem,4vw,1.25rem)] text-center max-w-md mx-auto text-gray-100 mb-8"> 匠心独运，于方寸之间展现万千气象，每一次雕琢都是与材料的深度对话 </p> 
+    <!-- [/MODULE] q5t_副标题描述区域 -- 展示副标题文字，提供对主标题的补充说明 --> 
+    <!-- [MODULE] r7j_行动按钮区域 --> 
+    <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md"> 
+     <a class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-full text-center transition-all duration-300 transform hover:scale-105 shadow-lg" href="javascript:void(0);"> 探索工艺 </a> 
+     <a class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-medium py-3 px-6 rounded-full text-center transition-all duration-300 border border-white/40" href="javascript:void(0);"> 了解更多 </a> 
+    </div> 
+    <!-- [/MODULE] r7j_行动按钮区域 -- 包含两个行动按钮，分别为主要行动按钮和次要行动按钮，具有悬停效果 --> 
+   </div> 
+   <!-- [/MODULE] p9k_内容叠加区域 -- 包含所有文字内容和按钮，位于背景图片上方 --> 
+  </div> 
+  <!-- [/MODULE] a7b_主内容区域 -- 移动端全屏展示带有背景图片和叠加内容的页面 --> 
+  <!-- [JSMOD] m3s_页面交互效果 --> 
+  <script id="page-interactions">
+   // 页面加载时初始化
+document.addEventListener('DOMContentLoaded', function () {
+  // 添加滚动效果
+  var handleScroll = function handleScroll() {
+    var contentArea = document.querySelector('[module="p9k_内容叠加区域"]');
+    var scrollPosition = window.scrollY;
+
+    // 根据滚动位置调整内容区域的位置和透明度
+    if (scrollPosition > 50) {
+      contentArea.style.transform = "translateY(".concat(scrollPosition * 0.3, "px)");
+      contentArea.style.opacity = "".concat(1 - scrollPosition / 500);
+    } else {
+      contentArea.style.transform = 'translateY(0)';
+      contentArea.style.opacity = '1';
+    }
+  };
+  // 添加滚动事件监听
+  window.addEventListener('scroll', handleScroll);
+
+  // 初始化页面加载动画
+  var fadeInElements = document.querySelectorAll('h1, p, a');
+  fadeInElements.forEach(function (el, index) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    setTimeout(function () {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 100 + index * 150);
+  });
+});
+  </script> 
+  <!-- [/JSMOD] m3s_页面交互效果 -->   
+ </body>
+</html>
