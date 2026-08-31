@@ -1,0 +1,148 @@
+<div class="min-h-screen flex flex-col bg-paper">
+    <header class="bg-primary text-cream shadow-md sticky top-0 z-50">
+        <div class="container mx-auto max-w-3xl px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2 min-w-0">
+                <button class="p-2 rounded-full hover:bg-secondary/30 shrink-0" onclick="goBack()" aria-label="返回"><i class="fas fa-arrow-left"></i></button>
+                <h1 id="quiz-course-title" class="text-lg font-kai font-bold truncate"></h1>
+            </div>
+            <span id="quiz-score" class="text-sm text-cream/80 shrink-0 ml-2">得分 0</span>
+        </div>
+        <div class="container mx-auto max-w-3xl px-4 pb-3">
+            <div class="flex justify-between items-center mb-1 text-xs text-cream/80">
+                <span id="question-progress"></span><span>单选题</span>
+            </div>
+            <div class="w-full bg-secondary/30 rounded-full h-1.5"><div id="quiz-progress-bar" class="bg-secondary h-1.5 rounded-full transition-all"></div></div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto max-w-3xl px-4 py-6 pb-28">
+        <section id="question-card" class="bg-cream rounded-xl shadow-lg border border-secondary/30 p-5 md:p-7">
+            <p id="question-category" class="text-xs text-primary mb-3"></p>
+            <h2 id="question-text" class="text-lg md:text-xl font-kai font-bold text-primary mb-6 leading-relaxed"></h2>
+            <div id="options-container" class="space-y-3"></div>
+            <div id="answer-feedback" class="hidden mt-5 p-4 rounded-lg text-sm leading-relaxed"></div>
+        </section>
+
+        <section id="quiz-result" class="hidden bg-cream rounded-xl shadow-lg border border-secondary/30 p-7 text-center">
+            <div id="result-icon" class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"></div>
+            <p class="text-xs text-dark/55 mb-2">测试完成</p>
+            <h2 id="result-title" class="text-2xl font-kai font-bold text-primary mb-2"></h2>
+            <p id="result-summary" class="text-dark/70 mb-6"></p>
+            <div class="grid grid-cols-2 gap-3 max-w-sm mx-auto mb-7">
+                <div class="bg-primary/10 rounded-lg p-4"><p id="result-correct" class="text-2xl font-bold text-primary"></p><p class="text-xs text-dark/60">答对题数</p></div>
+                <div class="bg-accent/10 rounded-lg p-4"><p id="result-points" class="text-2xl font-bold text-accent"></p><p class="text-xs text-dark/60">文化币</p></div>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-3">
+                <button id="retry-quiz" class="px-6 py-2 border border-primary text-primary rounded-lg hover:bg-primary/5"><i class="fas fa-rotate-right mr-1"></i>重新测试</button>
+                <button id="back-to-course" class="px-6 py-2 bg-primary text-cream rounded-lg hover:bg-primary/90">返回课程</button>
+            </div>
+        </section>
+    </main>
+
+    <footer id="quiz-footer" class="bg-cream border-t border-secondary/30 py-3 px-4 fixed bottom-0 left-0 right-0 z-40">
+        <div class="container mx-auto max-w-3xl flex justify-end">
+            <button id="quiz-action" disabled class="px-7 py-3 bg-primary text-cream rounded-lg hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed">提交本题</button>
+        </div>
+    </footer>
+</div>
+
+<script>
+(function () {
+    var course = getSelectedCourse();
+    var questions = course.quiz;
+    var current = 0;
+    var selected = null;
+    var checked = false;
+    var correctCount = 0;
+
+    var titleEl = document.getElementById('quiz-course-title');
+    var scoreEl = document.getElementById('quiz-score');
+    var actionButton = document.getElementById('quiz-action');
+    titleEl.textContent = course.title + ' · 课后测试';
+    document.title = course.title + '课后测试';
+
+    function renderQuestion() {
+        var item = questions[current];
+        selected = null;
+        checked = false;
+        document.getElementById('question-progress').textContent = '第 ' + (current + 1) + ' 题 / 共 ' + questions.length + ' 题';
+        document.getElementById('quiz-progress-bar').style.width = ((current + 1) / questions.length * 100) + '%';
+        document.getElementById('question-category').textContent = course.category + ' · ' + course.title;
+        document.getElementById('question-text').textContent = item.question;
+        document.getElementById('answer-feedback').className = 'hidden mt-5 p-4 rounded-lg text-sm leading-relaxed';
+        actionButton.disabled = true;
+        actionButton.textContent = '提交本题';
+        document.getElementById('options-container').innerHTML = item.options.map(function (option, index) {
+            var letter = String.fromCharCode(65 + index);
+            return '<button type="button" data-option-index="' + index + '" class="quiz-option w-full flex items-center gap-3 border-2 border-secondary/60 rounded-lg p-3 text-left hover:border-primary/60 hover:shadow-sm transition-all">' +
+                '<span class="option-letter w-7 h-7 shrink-0 rounded-full border-2 border-secondary flex items-center justify-center text-secondary font-bold text-sm">' + letter + '</span>' +
+                '<span class="text-dark/90">' + option + '</span>' +
+            '</button>';
+        }).join('');
+
+        document.querySelectorAll('.quiz-option').forEach(function (button) {
+            button.addEventListener('click', function () {
+                if (checked) return;
+                selected = Number(button.dataset.optionIndex);
+                document.querySelectorAll('.quiz-option').forEach(function (optionButton) {
+                    optionButton.classList.remove('border-primary', 'bg-primary/5');
+                    optionButton.querySelector('.option-letter').classList.remove('bg-primary', 'text-cream', 'border-primary');
+                });
+                button.classList.add('border-primary', 'bg-primary/5');
+                button.querySelector('.option-letter').classList.add('bg-primary', 'text-cream', 'border-primary');
+                actionButton.disabled = false;
+            });
+        });
+    }
+
+    function checkAnswer() {
+        var item = questions[current];
+        checked = true;
+        var isCorrect = selected === item.answer;
+        if (isCorrect) correctCount += 1;
+        scoreEl.textContent = '得分 ' + (correctCount * 20);
+
+        document.querySelectorAll('.quiz-option').forEach(function (button) {
+            var index = Number(button.dataset.optionIndex);
+            button.disabled = true;
+            if (index === item.answer) button.classList.add('border-green-500', 'bg-green-50');
+            if (index === selected && !isCorrect) button.classList.add('border-red-500', 'bg-red-50');
+        });
+
+        var feedback = document.getElementById('answer-feedback');
+        feedback.className = 'mt-5 p-4 rounded-lg text-sm leading-relaxed ' + (isCorrect ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200');
+        feedback.innerHTML = '<p class="font-medium mb-1"><i class="fas ' + (isCorrect ? 'fa-check-circle' : 'fa-circle-xmark') + ' mr-1"></i>' + (isCorrect ? '回答正确' : '回答错误，正确答案是 ' + String.fromCharCode(65 + item.answer)) + '</p><p>' + item.explanation + '</p>';
+        actionButton.textContent = current === questions.length - 1 ? '查看成绩' : '下一题';
+    }
+
+    function showResult() {
+        document.getElementById('question-card').classList.add('hidden');
+        document.getElementById('quiz-footer').classList.add('hidden');
+        document.getElementById('quiz-result').classList.remove('hidden');
+        var passed = correctCount >= 3;
+        var points = correctCount * 5;
+        document.getElementById('result-icon').className = 'w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 ' + (passed ? 'bg-green-100 text-green-600' : 'bg-accent/10 text-accent');
+        document.getElementById('result-icon').innerHTML = '<i class="fas ' + (passed ? 'fa-award' : 'fa-book-open') + ' text-3xl"></i>';
+        document.getElementById('result-title').textContent = passed ? '恭喜通过测试！' : '再温习一下吧';
+        document.getElementById('result-summary').textContent = '你在“' + course.title + '”测试中获得 ' + (correctCount * 20) + ' 分。';
+        document.getElementById('result-correct').textContent = correctCount + ' / ' + questions.length;
+        document.getElementById('result-points').textContent = '+' + points;
+    }
+
+    actionButton.addEventListener('click', function () {
+        if (!checked) checkAnswer();
+        else if (current < questions.length - 1) { current += 1; renderQuestion(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        else showResult();
+    });
+    document.getElementById('retry-quiz').addEventListener('click', function () {
+        current = 0; correctCount = 0; scoreEl.textContent = '得分 0';
+        document.getElementById('quiz-result').classList.add('hidden');
+        document.getElementById('question-card').classList.remove('hidden');
+        document.getElementById('quiz-footer').classList.remove('hidden');
+        renderQuestion();
+    });
+    document.getElementById('back-to-course').addEventListener('click', function () { navigateToCourse(course.id); });
+
+    renderQuestion();
+})();
+</script>

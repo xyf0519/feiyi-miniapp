@@ -1,0 +1,232 @@
+<!-- 文创商城页 -->
+<div class="min-h-screen flex flex-col bg-paper">
+    <!-- 顶部导航栏 -->
+    <header class="bg-primary text-cream shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors" onclick="goBack()">
+                    <i class="fas fa-arrow-left text-lg"></i>
+                </button>
+                <h1 class="text-xl font-kai font-bold">文创商城</h1>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors">
+                    <i class="fas fa-search text-lg"></i>
+                </button>
+                <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors relative">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                    <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">2</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 分类标签 -->
+    <div class="bg-cream border-b border-secondary/30 sticky top-[60px] z-40">
+        <div class="container mx-auto px-4 py-3 overflow-x-auto scrollbar-hide">
+            <div class="flex space-x-2 min-w-max">
+                <button class="px-4 py-2 bg-primary text-cream rounded-full text-sm font-medium whitespace-nowrap">全部</button>
+                <button class="px-4 py-2 bg-white border border-secondary text-primary rounded-full text-sm hover:bg-primary/5 whitespace-nowrap">剪纸艺术</button>
+                <button class="px-4 py-2 bg-white border border-secondary text-primary rounded-full text-sm hover:bg-primary/5 whitespace-nowrap">京剧脸谱</button>
+                <button class="px-4 py-2 bg-white border border-secondary text-primary rounded-full text-sm hover:bg-primary/5 whitespace-nowrap">中国结</button>
+                <button class="px-4 py-2 bg-white border border-secondary text-primary rounded-full text-sm hover:bg-primary/5 whitespace-nowrap">书法字帖</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容区域 -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- 积分兑换提示 -->
+        <div class="bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg p-4 mb-6 border border-primary/20">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="font-kai font-bold text-primary mb-1">文化币兑换专区</h3>
+                    <p class="text-sm text-dark/70">使用文化币+现金购买更优惠</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-dark/60">我的文化币</p>
+                    <p class="text-primary font-bold text-lg">520</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 商品网格 -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- 商品卡片1 -->
+            <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow">
+                <div class="relative">
+                    <img src="../assets/images/201702231102461761.jpg" alt="赫哲族鱼皮镂刻粘贴画" class="w-full h-40 object-cover"/>
+                    <div class="absolute top-2 left-2 bg-primary text-cream text-xs px-2 py-1 rounded-full">积分兑换</div>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-medium text-primary text-sm mb-2 line-clamp-2">赫哲族鱼皮镂刻粘贴画</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <p class="text-xs text-dark/60 line-through">¥199</p>
+                            <p class="text-primary font-bold text-sm">100币+¥169</p>
+                        </div>
+                        <button class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+                            <i class="fas fa-shopping-cart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center text-xs text-dark/60">
+                        <i class="fas fa-fire text-red-500 mr-1"></i>
+                        <span>已售 234</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商品卡片2 -->
+            <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow">
+                <div class="relative">
+                    <img src="..\assets\images\mmexport1775830206034.jpg" alt="冰箱贴" class="w-full h-40 object-cover"/>
+                    <div class="absolute top-2 left-2 bg-primary text-cream text-xs px-2 py-1 rounded-full">积分兑换</div>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-medium text-primary text-sm mb-2 line-clamp-2">冰箱贴</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <p class="text-xs text-dark/60 line-through">¥59</p>
+                            <p class="text-primary font-bold text-sm">80币+¥19</p>
+                        </div>
+                        <button class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+                            <i class="fas fa-shopping-cart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center text-xs text-dark/60">
+                        <i class="fas fa-fire text-red-500 mr-1"></i>
+                        <span>已售 189</span>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- 商品卡片2 -->
+            <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow">
+                <div class="relative">
+                    <img src="..\assets\images\mmexport1775830197014.jpg" alt="书签" class="w-full h-40 object-cover"/>
+                    <div class="absolute top-2 left-2 bg-primary text-cream text-xs px-2 py-1 rounded-full">积分兑换</div>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-medium text-primary text-sm mb-2 line-clamp-2">书签</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <p class="text-xs text-dark/60 line-through">¥29</p>
+                            <p class="text-primary font-bold text-sm">80币+¥19</p>
+                        </div>
+                        <button class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+                            <i class="fas fa-shopping-cart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center text-xs text-dark/60">
+                        <i class="fas fa-fire text-red-500 mr-1"></i>
+                        <span>已售 189</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商品卡片3 -->
+            <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow">
+                <div class="relative">
+                    <img src="https://design.gemcoder.com/staticResource/echoAiSystemImages/a7ae94ff66a399a6cda9cd38135bff07.png" alt="中国结挂饰" class="w-full h-40 object-cover"/>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-medium text-primary text-sm mb-2 line-clamp-2">手工编织中国结挂饰</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <p class="text-primary font-bold text-sm">¥89</p>
+                        </div>
+                        <button class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+                            <i class="fas fa-shopping-cart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center text-xs text-dark/60">
+                        <i class="fas fa-fire text-red-500 mr-1"></i>
+                        <span>已售 156</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商品卡片4 -->
+            <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow">
+                <div class="relative">
+                    <img src="https://design.gemcoder.com/staticResource/echoAiSystemImages/a49a3a6ac580c0000b3658b160dc1562.png" alt="书法字帖" class="w-full h-40 object-cover"/>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-medium text-primary text-sm mb-2 line-clamp-2">书法练习字帖套装</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <p class="text-primary font-bold text-sm">¥45</p>
+                        </div>
+                        <button class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+                            <i class="fas fa-shopping-cart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center text-xs text-dark/60">
+                        <i class="fas fa-fire text-red-500 mr-1"></i>
+                        <span>已售 312</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 更多商品... -->
+            <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow">
+                <div class="relative">
+                    <img src="https://design.gemcoder.com/staticResource/echoAiSystemImages/daf33f08cb06e79788bf2d92a35760ab.png" alt="剪纸工具套装" class="w-full h-40 object-cover"/>
+                    <div class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">热卖</div>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-medium text-primary text-sm mb-2 line-clamp-2">专业剪纸工具套装</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <p class="text-primary font-bold text-sm">¥128</p>
+                        </div>
+                        <button class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+                            <i class="fas fa-shopping-cart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center text-xs text-dark/60">
+                        <i class="fas fa-fire text-red-500 mr-1"></i>
+                        <span>已售 567</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow">
+                <div class="relative">
+                    <img src="https://design.gemcoder.com/staticResource/echoAiSystemImages/656db0f0e72c9c22658206b890ce653a.png" alt="脸谱面具" class="w-full h-40 object-cover"/>
+                </div>
+                <div class="p-3">
+                    <h3 class="font-medium text-primary text-sm mb-2 line-clamp-2">京剧脸谱装饰面具</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <p class="text-primary font-bold text-sm">¥78</p>
+                        </div>
+                        <button class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+                            <i class="fas fa-shopping-cart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center text-xs text-dark/60">
+                        <i class="fas fa-fire text-red-500 mr-1"></i>
+                        <span>已售 98</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+</style>

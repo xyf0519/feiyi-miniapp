@@ -1,0 +1,54 @@
+<div class="min-h-screen flex flex-col bg-paper">
+    <header class="bg-primary text-cream shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center space-x-2">
+            <button class="p-2 rounded-full hover:bg-secondary/30" onclick="goBack()" aria-label="返回"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="text-xl font-kai font-bold">传承人物</h1>
+        </div>
+    </header>
+
+    <section class="bg-gradient-to-r from-primary to-dark text-cream">
+        <div class="container mx-auto px-4 py-8">
+            <p class="text-secondary text-sm mb-2">公开资料 · 可在线核验</p>
+            <h2 class="font-kai text-2xl font-bold mb-2">认识技艺背后的人</h2>
+            <p class="text-cream/75 text-sm">收录六门课程对应的代表性传承人、艺术家和研究者</p>
+        </div>
+    </section>
+
+    <main class="flex-grow container mx-auto px-4 py-6 pb-24">
+        <div id="master-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 bg-cream border-t border-secondary/30 z-50">
+        <div class="container mx-auto grid grid-cols-4 py-2">
+            <button class="text-dark/60" onclick="navigateTo('index')"><i class="fas fa-home block text-lg"></i><span class="text-xs">首页</span></button>
+            <button class="text-dark/60" onclick="navigateTo('course-list')"><i class="fas fa-book-open block text-lg"></i><span class="text-xs">课程</span></button>
+            <button class="text-primary" onclick="navigateTo('master-list')"><i class="fas fa-user-tie block text-lg"></i><span class="text-xs">传承人</span></button>
+            <button class="text-dark/60" onclick="navigateTo('profile')"><i class="fas fa-user block text-lg"></i><span class="text-xs">我的</span></button>
+        </div>
+    </nav>
+</div>
+
+<script>
+(function () {
+    document.getElementById('master-grid').innerHTML = (window.COURSES || []).map(function (course) {
+        return '<article class="bg-cream rounded-xl shadow-md border border-secondary/30 p-5 hover:shadow-lg transition-shadow">' +
+            '<div class="flex items-center gap-3 mb-4">' +
+                '<div class="w-16 h-16 shrink-0 rounded-full bg-primary text-cream border-2 border-secondary flex items-center justify-center font-kai text-2xl">' + course.master.name.slice(0, 1) + '</div>' +
+                '<div><p class="text-xs text-dark/50">' + course.category + '</p><h3 class="font-kai font-bold text-xl text-primary">' + course.master.name + '</h3><p class="text-xs text-dark/65 mt-1">' + course.master.badge + '</p></div>' +
+            '</div>' +
+            '<p class="text-sm text-dark/75 leading-relaxed line-clamp-3 mb-4">' + course.master.intro + '</p>' +
+            '<div class="flex gap-2">' +
+                '<button data-master-course="' + course.id + '" class="flex-1 py-2 border border-primary text-primary rounded-lg text-sm hover:bg-primary/5">人物资料</button>' +
+                '<button data-related-course="' + course.id + '" class="flex-1 py-2 bg-primary text-cream rounded-lg text-sm hover:bg-primary/90">相关课程</button>' +
+            '</div>' +
+        '</article>';
+    }).join('');
+
+    document.querySelectorAll('[data-master-course]').forEach(function (button) {
+        button.addEventListener('click', function () { navigateToMaster(button.dataset.masterCourse); });
+    });
+    document.querySelectorAll('[data-related-course]').forEach(function (button) {
+        button.addEventListener('click', function () { navigateToCourse(button.dataset.relatedCourse); });
+    });
+})();
+</script>

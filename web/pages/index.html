@@ -1,0 +1,528 @@
+<!-- 首页内容 -->
+<div class="min-h-screen flex flex-col">
+    <!-- 顶部导航栏 -->
+    <header class="bg-primary text-cream shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <img src="https://design.gemcoder.com/staticResource/echoAiSystemImages/38c0a982814276034e5b1ff4f8b00ca5.png" alt="非遗文化logo" class="h-10 w-10 rounded-full object-cover"/>
+                <h1 class="text-xl font-kai font-bold">传承非遗</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors">
+                    <i class="fas fa-search text-lg"></i>
+                </button>
+                <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors relative">
+                    <i class="fas fa-bell text-lg"></i>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <button id="user-menu-button" class="flex items-center space-x-2 p-1 rounded-full hover:bg-secondary/30 transition-colors">
+                    <img src="https://design.gemcoder.com/staticResource/echoAiSystemImages/399cb5f9e6e685024b2f91c5eafe0fa8.png" alt="用户头像" class="h-8 w-8 rounded-full border-2 border-secondary object-cover"/>
+                    <i class="fas fa-angle-down text-sm"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-secondary/30 transition-colors">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 桌面端导航菜单 -->
+        <nav class="hidden md:flex bg-primary/90">
+            <div class="container mx-auto">
+                <ul class="flex">
+                    <li><a href="javascript:navigateTo('index')" class="px-4 py-3 block hover:bg-secondary/50 transition-colors border-b-2 border-secondary">首页</a></li>
+                    <li><a href="javascript:navigateTo('course-list')" class="px-4 py-3 block hover:bg-secondary/50 transition-colors">课程中心</a></li>
+                    <li><a href="javascript:navigateTo('master-list')" class="px-4 py-3 block hover:bg-secondary/50 transition-colors">非遗传承人</a></li>
+                    <li><a href="javascript:navigateTo('shop')" class="px-4 py-3 block hover:bg-secondary/50 transition-colors">文创商城</a></li>
+                    <li><a href="#" class="px-4 py-3 block hover:bg-secondary/50 transition-colors">关于我们</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 移动端侧边菜单 -->
+    <div id="mobile-menu" class="fixed inset-0 bg-dark/50 z-40 hidden">
+        <div class="bg-cream w-64 h-full shadow-xl transform transition-transform duration-300 -translate-x-full" id="mobile-menu-content">
+            <div class="p-4 border-b border-secondary flex justify-between items-center">
+                <h2 class="font-kai font-bold text-xl text-primary">导航菜单</h2>
+                <button id="close-mobile-menu" class="p-2 rounded-full hover:bg-secondary/30">
+                    <i class="fas fa-times text-primary"></i>
+                </button>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-1">
+                    <li><a href="javascript:navigateTo('index')" class="block px-4 py-3 rounded-lg bg-primary/10 text-primary font-medium">首页</a></li>
+                    <li><a href="javascript:navigateTo('course-list')" class="block px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors">课程中心</a></li>
+                    <li><a href="javascript:navigateTo('master-list')" class="block px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors">非遗传承人</a></li>
+                    <li><a href="javascript:navigateTo('shop')" class="block px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors">文创商城</a></li>
+                    <li><a href="#" class="block px-4 py-3 rounded-lg hover:bg-primary/10 transition-colors">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 用户下拉菜单 -->
+    <div id="user-menu" class="absolute right-4 top-16 bg-cream rounded-lg shadow-lg w-48 border border-secondary hidden z-50">
+        <div class="p-3 border-b border-secondary">
+            <div class="flex items-center space-x-3">
+                <img src="https://design.gemcoder.com/staticResource/echoAiSystemImages/953e237fbb334e040b5e469c491f0c5b.png" alt="用户头像" class="h-10 w-10 rounded-full border-2 border-secondary object-cover"/>
+                <div>
+                    <p class="font-medium text-primary">游客用户</p>
+                    <p class="text-sm text-dark/70">未登录</p>
+                </div>
+            </div>
+        </div>
+        <ul class="py-1">
+            <li><a href="javascript:navigateTo('profile')" class="block px-4 py-2 hover:bg-secondary/20 transition-colors"><i class="fas fa-user-circle mr-2"></i>个人中心</a></li>
+            <li><a href="javascript:navigateTo('course-list')" class="block px-4 py-2 hover:bg-secondary/20 transition-colors"><i class="fas fa-graduation-cap mr-2"></i>我的学习</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-secondary/20 transition-colors"><i class="fas fa-coins mr-2"></i>我的积分</a></li>
+            <li><a href="javascript:navigateTo('shop')" class="block px-4 py-2 hover:bg-secondary/20 transition-colors"><i class="fas fa-shopping-cart mr-2"></i>我的订单</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-secondary/20 transition-colors"><i class="fas fa-cog mr-2"></i>设置</a></li>
+            <li><a href="javascript:navigateTo('index')" class="block px-4 py-2 text-red-500 hover:bg-secondary/20 transition-colors" id="logout-button"><i class="fas fa-sign-out-alt mr-2"></i>退出登录</a></li>
+        </ul>
+    </div>
+
+    <!-- 主内容区域 -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- 轮播图区域 -->
+        <section class="mb-8 rounded-xl overflow-hidden shadow-lg border-2 border-secondary">
+            <div id="carousel" class="relative h-48 md:h-64">
+                <div class="carousel-items h-full">
+                    <div class="carousel-item absolute inset-0 opacity-100 transition-opacity duration-500 cursor-pointer" onclick="navigateToCourse('paper-cutting')">
+                        <img src="./assets/images/paper-cutting.png" alt="非遗剪纸艺术展" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent flex flex-col justify-end p-6">
+                            <h3 class="text-cream text-xl md:text-2xl font-kai font-bold">非遗剪纸艺术展</h3>
+                            <p class="text-cream/90 text-sm md:text-base mt-1">探索传统剪纸艺术的魅力与传承</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-500 cursor-pointer" onclick="navigateToCourse('guqin')">
+                        <img src="./assets/images/guqin.svg" alt="古琴艺术入门" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent flex flex-col justify-end p-6">
+                            <h3 class="text-cream text-xl md:text-2xl font-kai font-bold">古琴艺术入门</h3>
+                            <p class="text-cream/90 text-sm md:text-base mt-1">在散音、泛音与按音中感受琴乐之美</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-500 cursor-pointer" onclick="navigateToCourse('opera-mask')">
+                        <img src="./assets/images/opera-mask.png" alt="京剧脸谱艺术" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent flex flex-col justify-end p-6">
+                            <h3 class="text-cream text-xl md:text-2xl font-kai font-bold">京剧脸谱艺术</h3>
+                            <p class="text-cream/90 text-sm md:text-base mt-1">了解京剧脸谱的色彩与象征意义</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-primary w-8 h-8 rounded-full flex items-center justify-center shadow-md">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-primary w-8 h-8 rounded-full flex items-center justify-center shadow-md">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                    <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-cream opacity-100"></button>
+                    <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-cream opacity-50"></button>
+                    <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-cream opacity-50"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 课程分类区域 -->
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl md:text-2xl font-kai font-bold text-primary border-b-2 border-secondary pb-1">课程分类</h2>
+                <a href="javascript:navigateTo('course-list')" class="text-accent hover:underline flex items-center text-sm">
+                    查看全部<i class="fas fa-angle-right ml-1"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="javascript:navigateToCourseList('传统手工艺')" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                            <i class="fas fa-hand-paper text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="font-medium text-primary">传统手工艺</h3>
+                        <p class="text-xs text-dark/70 mt-1">3门课程</p>
+                    </div>
+                </a>
+                <a href="javascript:navigateToCourseList('传统音乐')" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                            <i class="fas fa-music text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="font-medium text-primary">传统音乐</h3>
+                        <p class="text-xs text-dark/70 mt-1">1门课程</p>
+                    </div>
+                </a>
+                <a href="javascript:navigateToCourseList('传统舞蹈')" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                            <i class="fas fa-male text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="font-medium text-primary">传统舞蹈</h3>
+                        <p class="text-xs text-dark/70 mt-1">1门课程</p>
+                    </div>
+                </a>
+                <a href="javascript:navigateToCourseList('传统戏剧')" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                            <i class="fas fa-theater-masks text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="font-medium text-primary">传统戏剧</h3>
+                        <p class="text-xs text-dark/70 mt-1">1门课程</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 推荐课程区域 -->
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl md:text-2xl font-kai font-bold text-primary border-b-2 border-secondary pb-1">推荐课程</h2>
+                <a href="javascript:navigateTo('course-list')" class="text-accent hover:underline flex items-center text-sm">
+                    查看全部<i class="fas fa-angle-right ml-1"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 课程卡片1 -->
+                <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow flex flex-col h-full cursor-pointer" onclick="navigateToCourse('paper-cutting')">
+                    <div class="relative">
+                        <img src="./assets/images/paper-cutting.png" alt="剪纸艺术入门" class="w-full h-48 object-cover"/>
+                        <div class="absolute top-2 right-2 bg-primary text-cream text-xs px-2 py-1 rounded-full">热门</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/70 to-transparent p-3">
+                            <div class="flex items-center text-cream/90 text-xs">
+                                <i class="fas fa-clock mr-1"></i>8课时
+                                <span class="mx-2">•</span>
+                                <i class="fas fa-signal mr-1"></i>初级
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="font-kai font-bold text-lg text-primary mb-2 hover:text-accent transition-colors">剪纸艺术入门</h3>
+                        <p class="text-sm text-dark/80 mb-4 flex-grow">学习传统剪纸的基本技巧和创作方法，感受这项古老民间艺术的魅力。</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-primary text-cream flex items-center justify-center mr-2 font-kai">周</span>
+                                <span class="text-sm text-dark/70">周淑英</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <span class="text-sm font-medium">4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium" onclick="event.stopPropagation(); navigateToCourse('paper-cutting');">开始学习</button>
+                    </div>
+                </div>
+
+                <!-- 课程卡片2 -->
+                <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow flex flex-col h-full cursor-pointer" onclick="navigateToCourse('opera-mask')">
+                    <div class="relative">
+                        <img src="./assets/images/opera-mask.png" alt="京剧脸谱绘制" class="w-full h-48 object-cover"/>
+                        <div class="absolute top-2 right-2 bg-accent text-cream text-xs px-2 py-1 rounded-full">新课</div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/70 to-transparent p-3">
+                            <div class="flex items-center text-cream/90 text-xs">
+                                <i class="fas fa-clock mr-1"></i>10课时
+                                <span class="mx-2">•</span>
+                                <i class="fas fa-signal mr-1"></i>中级
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="font-kai font-bold text-lg text-primary mb-2 hover:text-accent transition-colors">京剧脸谱绘制</h3>
+                        <p class="text-sm text-dark/80 mb-4 flex-grow">了解京剧脸谱的历史渊源、色彩象征和绘制技巧，亲手绘制经典京剧脸谱。</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-primary text-cream flex items-center justify-center mr-2 font-kai">杨</span>
+                                <span class="text-sm text-dark/70">杨玉栋</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <span class="text-sm font-medium">4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium" onclick="event.stopPropagation(); navigateToCourse('opera-mask');">开始学习</button>
+                    </div>
+                </div>
+
+                <!-- 课程卡片3 -->
+                <div class="bg-cream rounded-lg shadow-md overflow-hidden border border-secondary/30 hover:shadow-lg transition-shadow flex flex-col h-full cursor-pointer" onclick="navigateToCourse('chinese-knot')">
+                    <div class="relative">
+                        <img src="./assets/images/chinese-knot.png" alt="中国结编织技艺" class="w-full h-48 object-cover"/>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/70 to-transparent p-3">
+                            <div class="flex items-center text-cream/90 text-xs">
+                                <i class="fas fa-clock mr-1"></i>6课时
+                                <span class="mx-2">•</span>
+                                <i class="fas fa-signal mr-1"></i>初级
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="font-kai font-bold text-lg text-primary mb-2 hover:text-accent transition-colors">中国结编织技艺</h3>
+                        <p class="text-sm text-dark/80 mb-4 flex-grow">掌握中国结的基本编织方法，学习平结、吉祥结等经典结型的制作技巧。</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <span class="w-8 h-8 rounded-full bg-primary text-cream flex items-center justify-center mr-2 font-kai">陈</span>
+                                <span class="text-sm text-dark/70">陈夏生</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <span class="text-sm font-medium">4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button class="w-full bg-primary hover:bg-primary/90 text-cream py-2 rounded-lg transition-colors text-sm font-medium" onclick="event.stopPropagation(); navigateToCourse('chinese-knot');">开始学习</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部导航栏 -->
+    <footer class="bg-gradient-to-b from-primary to-primary/90 text-cream">
+        <div class="container mx-auto px-4 py-8">
+            <!-- 快捷链接区域 -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+                <!-- 关于我们 -->
+                <div class="bg-cream/10 rounded-lg p-4 hover:bg-cream/15 transition-all">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-12 h-12 bg-secondary/30 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-info-circle text-2xl text-cream"></i>
+                        </div>
+                        <h3 class="font-kai font-bold text-base mb-2">关于我们</h3>
+                        <p class="text-xs text-cream/70 mb-3 leading-relaxed">致力于传承和弘扬中华优秀传统文化</p>
+                        <div class="space-y-1 text-xs text-cream/80 w-full">
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>平台介绍
+                            </a>
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>团队成员
+                            </a>
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>联系我们
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 帮助中心 -->
+                <div class="bg-cream/10 rounded-lg p-4 hover:bg-cream/15 transition-all">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-12 h-12 bg-accent/30 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-question-circle text-2xl text-cream"></i>
+                        </div>
+                        <h3 class="font-kai font-bold text-base mb-2">帮助中心</h3>
+                        <p class="text-xs text-cream/70 mb-3 leading-relaxed">为您提供全方位的学习支持</p>
+                        <div class="space-y-1 text-xs text-cream/80 w-full">
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>常见问题
+                            </a>
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>学习指南
+                            </a>
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>意见反馈
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 资源中心 -->
+                <div class="bg-cream/10 rounded-lg p-4 hover:bg-cream/15 transition-all">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-12 h-12 bg-secondary/40 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-book text-2xl text-cream"></i>
+                        </div>
+                        <h3 class="font-kai font-bold text-base mb-2">资源中心</h3>
+                        <p class="text-xs text-cream/70 mb-3 leading-relaxed">海量非遗文化资源等你探索</p>
+                        <div class="space-y-1 text-xs text-cream/80 w-full">
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>资料库
+                            </a>
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>教学视频
+                            </a>
+                            <a href="#" class="block hover:text-cream transition-colors py-1">
+                                <i class="fas fa-angle-right mr-1"></i>活动日历
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 社交媒体 -->
+            <div class="border-t border-cream/20 pt-5 pb-4">
+                <div class="text-center mb-4">
+                    <h4 class="font-kai font-bold text-sm mb-3">关注我们</h4>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="bg-cream/20 hover:bg-cream/30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110">
+                            <i class="fab fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-cream/20 hover:bg-cream/30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110">
+                            <i class="fab fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-cream/20 hover:bg-cream/30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110">
+                            <i class="fab fa-qq text-xl"></i>
+                        </a>
+                        <a href="#" class="bg-cream/20 hover:bg-cream/30 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110">
+                            <i class="fab fa-bilibili text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 版权信息 -->
+            <div class="border-t border-cream/20 pt-4 text-center text-xs text-cream/60">
+                <p class="mb-1">© 2026 非遗文化传承平台 版权所有</p>
+                <p class="flex items-center justify-center space-x-3">
+                    <span>ICP备案号：粤ICP备12345678号</span>
+                    <span>•</span>
+                    <a href="#" class="hover:text-cream/80 transition-colors">隐私政策</a>
+                    <span>•</span>
+                    <a href="#" class="hover:text-cream/80 transition-colors">用户协议</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+// 立即执行，不等待 DOMContentLoaded
+(function() {
+    // 使用 setTimeout 确保 DOM 已经插入
+    setTimeout(function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuContent = document.getElementById('mobile-menu-content');
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userMenu = document.getElementById('user-menu');
+
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenuContent.classList.remove('-translate-x-full');
+                }, 10);
+            });
+        }
+
+        function closeMobileMenu() {
+            mobileMenuContent.classList.add('-translate-x-full');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        if (closeMobileMenuButton) {
+            closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        if (userMenuButton) {
+            userMenuButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                userMenu.classList.toggle('hidden');
+            });
+        }
+
+        document.addEventListener('click', function() {
+            if (userMenu) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        if (userMenu) {
+            userMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+
+        // 轮播图功能
+        const carousel = document.getElementById('carousel');
+        if (carousel) {
+            const items = carousel.querySelectorAll('.carousel-item');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prevButton = carousel.querySelector('.carousel-prev');
+            const nextButton = carousel.querySelector('.carousel-next');
+            let currentIndex = 0;
+            let interval;
+
+            function showSlide(index) {
+                items.forEach(item => {
+                    item.classList.remove('opacity-100');
+                    item.classList.add('opacity-0');
+                });
+                dots.forEach(dot => {
+                    dot.classList.remove('opacity-100');
+                    dot.classList.add('opacity-50');
+                });
+                items[index].classList.remove('opacity-0');
+                items[index].classList.add('opacity-100');
+                dots[index].classList.remove('opacity-50');
+                dots[index].classList.add('opacity-100');
+                currentIndex = index;
+            }
+
+            function nextSlide() {
+                let index = currentIndex + 1;
+                if (index >= items.length) index = 0;
+                showSlide(index);
+            }
+
+            function prevSlide() {
+                let index = currentIndex - 1;
+                if (index < 0) index = items.length - 1;
+                showSlide(index);
+            }
+
+            function startInterval() {
+                interval = setInterval(nextSlide, 5000);
+            }
+
+            function stopInterval() {
+                clearInterval(interval);
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    prevSlide();
+                    stopInterval();
+                    startInterval();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nextSlide();
+                    stopInterval();
+                    startInterval();
+                });
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    showSlide(index);
+                    stopInterval();
+                    startInterval();
+                });
+            });
+
+            carousel.addEventListener('mouseenter', stopInterval);
+            carousel.addEventListener('mouseleave', startInterval);
+
+            startInterval();
+        }
+    }, 100);
+})();
+</script>

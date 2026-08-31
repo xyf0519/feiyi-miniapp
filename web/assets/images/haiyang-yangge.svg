@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">海阳大秧歌课程封面</title>
+  <desc id="desc">暖红色剪影与扇面组成的海阳大秧歌主题插画</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6f2f1d"/><stop offset="1" stop-color="#c26b3a"/></linearGradient><radialGradient id="sun"><stop stop-color="#ffe0a0"/><stop offset="1" stop-color="#f2bc67" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><circle cx="925" cy="145" r="205" fill="url(#sun)" opacity=".9"/>
+  <g fill="none" stroke="#f2c879" opacity=".35" stroke-width="4"><path d="M0 485 Q240 380 470 495 T930 475 T1360 480"/><path d="M-60 535 Q190 430 450 535 T960 520 T1420 520"/></g>
+  <g transform="translate(680 100)" fill="#f6d58a"><path d="M0 180 Q105-95 300 28 Q125 80 0 180Z"/><path d="M18 167 Q130-55 279 28" fill="none" stroke="#8b4513" stroke-width="8"/><path d="M61 143 Q160-25 260 30M110 118Q180 8 240 32M161 92Q200 28 220 35" fill="none" stroke="#8b4513" stroke-width="5"/></g>
+  <g transform="translate(690 235)" fill="#2f1b18"><circle cx="112" cy="42" r="31"/><path d="M88 74 Q116 55 143 80 L178 230 Q137 268 63 237Z"/><path d="M88 91 Q18 120-38 192 L-2 214 Q58 166 105 145Z"/><path d="M140 94 Q208 80 262 36 L287 70 Q220 137 156 151Z"/><path d="M82 229 Q46 308 11 393 L60 405 Q103 319 119 257Z"/><path d="M141 231 Q178 305 235 373 L194 402 Q123 328 104 257Z"/></g>
+  <text x="84" y="190" fill="#fff8dc" font-size="76" font-family="serif" font-weight="700">海阳大秧歌</text><text x="90" y="252" fill="#f2d19b" font-size="30" font-family="sans-serif" letter-spacing="8">跑扭结合 · 鼓乐相随</text><rect x="86" y="285" width="114" height="6" rx="3" fill="#f2c879"/>
+</svg>

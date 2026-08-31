@@ -1,0 +1,174 @@
+<!-- 个人中心页 -->
+<div class="min-h-screen flex flex-col bg-paper">
+    <!-- 顶部导航栏 -->
+    <header class="bg-primary text-cream shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors" onclick="goBack()">
+                    <i class="fas fa-arrow-left text-lg"></i>
+                </button>
+                <h1 class="text-xl font-kai font-bold">个人中心</h1>
+            </div>
+            <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors">
+                <i class="fas fa-cog text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 用户信息卡片 -->
+    <div class="bg-gradient-to-br from-primary to-accent p-6">
+        <div class="container mx-auto">
+            <div class="flex items-center space-x-4">
+                <img src="https://design.gemcoder.com/staticResource/echoAiSystemImages/399cb5f9e6e685024b2f91c5eafe0fa8.png" alt="用户头像" class="w-20 h-20 rounded-full border-4 border-cream object-cover"/>
+                <div class="flex-grow">
+                    <h2 class="text-cream text-xl font-kai font-bold">非遗爱好者</h2>
+                    <p class="text-cream/80 text-sm mt-1">ID: 123456789</p>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <div class="bg-cream/20 px-3 py-1 rounded-full text-cream text-xs">
+                            <i class="fas fa-coins mr-1"></i>文化币: 520
+                        </div>
+                        <div class="bg-cream/20 px-3 py-1 rounded-full text-cream text-xs">
+                            <i class="fas fa-trophy mr-1"></i>等级: Lv.5
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容区域 -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- 数据统计 -->
+        <div class="grid grid-cols-4 gap-3 mb-6">
+            <div class="bg-cream rounded-lg shadow-md p-4 text-center border border-secondary/30">
+                <div class="text-2xl font-bold text-primary">12</div>
+                <div class="text-xs text-dark/70 mt-1">已学课程</div>
+            </div>
+            <div class="bg-cream rounded-lg shadow-md p-4 text-center border border-secondary/30">
+                <div class="text-2xl font-bold text-primary">36</div>
+                <div class="text-xs text-dark/70 mt-1">学习时长</div>
+            </div>
+            <div class="bg-cream rounded-lg shadow-md p-4 text-center border border-secondary/30">
+                <div class="text-2xl font-bold text-primary">8</div>
+                <div class="text-xs text-dark/70 mt-1">获得证书</div>
+            </div>
+            <div class="bg-cream rounded-lg shadow-md p-4 text-center border border-secondary/30">
+                <div class="text-2xl font-bold text-primary">520</div>
+                <div class="text-xs text-dark/70 mt-1">文化币</div>
+            </div>
+        </div>
+
+        <!-- 功能菜单 -->
+        <div class="bg-cream rounded-lg shadow-md p-4 mb-6 border border-secondary/30">
+            <h3 class="font-kai font-bold text-primary mb-3">我的学习</h3>
+            <div class="space-y-2">
+                <a href="javascript:navigateTo('course-list')" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-book text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">我的课程</span>
+                    </div>
+                    <i class="fas fa-angle-right text-dark/40"></i>
+                </a>
+                <a href="#" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-certificate text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">我的证书</span>
+                    </div>
+                    <i class="fas fa-angle-right text-dark/40"></i>
+                </a>
+                <a href="#" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-heart text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">我的收藏</span>
+                    </div>
+                    <i class="fas fa-angle-right text-dark/40"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 订单与积分 -->
+        <div class="bg-cream rounded-lg shadow-md p-4 mb-6 border border-secondary/30">
+            <h3 class="font-kai font-bold text-primary mb-3">订单与积分</h3>
+            <div class="space-y-2">
+                <a href="javascript:void(0)" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-shopping-bag text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">我的订单</span>
+                    </div>
+                    <i class="fas fa-angle-right text-dark/40"></i>
+                </a>
+                <a href="javascript:void(0)" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-coins text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">文化币明细</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-primary font-bold">520</span>
+                        <i class="fas fa-angle-right text-dark/40"></i>
+                    </div>
+                </a>
+                <a href="javascript:navigateTo('shop')" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-gift text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">积分兑换</span>
+                    </div>
+                    <i class="fas fa-angle-right text-dark/40"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 其他功能 -->
+        <div class="bg-cream rounded-lg shadow-md p-4 mb-6 border border-secondary/30">
+            <h3 class="font-kai font-bold text-primary mb-3">更多功能</h3>
+            <div class="space-y-2">
+                <a href="javascript:void(0)" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-bell text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">消息通知</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span>
+                        <i class="fas fa-angle-right text-dark/40"></i>
+                    </div>
+                </a>
+                <a href="javascript:void(0)" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-question-circle text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">帮助与反馈</span>
+                    </div>
+                    <i class="fas fa-angle-right text-dark/40"></i>
+                </a>
+                <a href="javascript:void(0)" class="flex items-center justify-between p-3 hover:bg-secondary/10 rounded-lg transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i class="fas fa-info-circle text-primary"></i>
+                        </div>
+                        <span class="text-dark/90">关于我们</span>
+                    </div>
+                    <i class="fas fa-angle-right text-dark/40"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 退出登录按钮 -->
+        <button onclick="navigateTo('index')" class="w-full bg-white border border-secondary text-primary py-3 rounded-lg hover:bg-secondary/10 transition-colors font-medium mb-6">
+            退出登录
+        </button>
+    </main>
+</div>

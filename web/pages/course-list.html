@@ -1,0 +1,103 @@
+<div class="min-h-screen flex flex-col bg-paper">
+    <header class="bg-primary text-cream shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <button class="p-2 rounded-full hover:bg-secondary/30 transition-colors" onclick="goBack()" aria-label="返回">
+                    <i class="fas fa-arrow-left text-lg"></i>
+                </button>
+                <h1 class="text-xl font-kai font-bold">课程中心</h1>
+            </div>
+            <span id="course-count" class="text-sm text-cream/80"></span>
+        </div>
+    </header>
+
+    <section class="bg-gradient-to-br from-primary to-primary/80 text-cream">
+        <div class="container mx-auto px-4 py-8">
+            <p class="text-secondary text-sm mb-2">在线非遗课堂</p>
+            <h2 class="font-kai text-2xl font-bold mb-2">跟着传承人，学会一门老手艺</h2>
+            <p class="text-sm text-cream/80">六门课程均含真实人物资料、分节视频与课后测试</p>
+        </div>
+    </section>
+
+    <div class="bg-cream border-b border-secondary/30 sticky top-[60px] z-40">
+        <div class="container mx-auto px-4 py-3 overflow-x-auto scrollbar-hide">
+            <div id="course-filters" class="flex space-x-2 min-w-max"></div>
+        </div>
+    </div>
+
+    <main class="flex-grow container mx-auto px-4 py-6 pb-24">
+        <div id="course-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 bg-cream border-t border-secondary/30 z-50">
+        <div class="container mx-auto grid grid-cols-4 py-2">
+            <button class="text-dark/60" onclick="navigateTo('index')"><i class="fas fa-home block text-lg"></i><span class="text-xs">首页</span></button>
+            <button class="text-primary" onclick="navigateTo('course-list')"><i class="fas fa-book-open block text-lg"></i><span class="text-xs">课程</span></button>
+            <button class="text-dark/60" onclick="navigateTo('master-list')"><i class="fas fa-user-tie block text-lg"></i><span class="text-xs">传承人</span></button>
+            <button class="text-dark/60" onclick="navigateTo('profile')"><i class="fas fa-user block text-lg"></i><span class="text-xs">我的</span></button>
+        </div>
+    </nav>
+</div>
+
+<style>
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<script>
+(function () {
+    var activeCategory = localStorage.getItem('feiyiCourseCategory') || '全部';
+    var filters = ['全部'].concat(window.COURSE_CATEGORIES || []);
+
+    function renderFilters() {
+        document.getElementById('course-filters').innerHTML = filters.map(function (category) {
+            var active = category === activeCategory;
+            return '<button class="px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ' +
+                (active ? 'bg-primary text-cream' : 'bg-white border border-secondary text-primary hover:bg-primary/5') +
+                '" data-category="' + category + '">' + category + '</button>';
+        }).join('');
+
+        document.querySelectorAll('[data-category]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                activeCategory = button.dataset.category;
+                localStorage.setItem('feiyiCourseCategory', activeCategory);
+                renderFilters();
+                renderCourses();
+            });
+        });
+    }
+
+    function renderCourses() {
+        var courses = (window.COURSES || []).filter(function (course) {
+            return activeCategory === '全部' || course.category === activeCategory;
+        });
+        document.getElementById('course-count').textContent = courses.length + ' 门课程';
+        document.getElementById('course-grid').innerHTML = courses.map(function (course) {
+            return '<article class="bg-cream rounded-xl shadow-md overflow-hidden border border-secondary/30 hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer" data-course-id="' + course.id + '">' +
+                '<div class="relative">' +
+                    '<img src="' + course.image + '" alt="' + course.title + '" class="w-full h-48 object-cover" loading="lazy">' +
+                    '<span class="absolute top-3 left-3 bg-primary text-cream text-xs px-3 py-1 rounded-full">' + course.category + '</span>' +
+                    '<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark/80 to-transparent p-3 pt-10">' +
+                        '<div class="flex items-center text-cream/90 text-xs"><i class="fas fa-clock mr-1"></i>' + course.lessons.length + '课时<span class="mx-2">•</span><i class="fas fa-play-circle mr-1"></i>前2节可学</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="p-4">' +
+                    '<h3 class="font-kai font-bold text-lg text-primary mb-2">' + course.title + '</h3>' +
+                    '<p class="text-sm text-dark/75 mb-4 line-clamp-2">' + course.summary + '</p>' +
+                    '<div class="flex items-center justify-between border-t border-secondary/20 pt-3">' +
+                        '<div><span class="text-xs text-dark/50">人物资料</span><p class="text-sm font-medium text-dark">' + course.master.name + '</p></div>' +
+                        '<span class="text-primary text-sm">查看课程 <i class="fas fa-arrow-right ml-1"></i></span>' +
+                    '</div>' +
+                '</div>' +
+            '</article>';
+        }).join('');
+
+        document.querySelectorAll('[data-course-id]').forEach(function (card) {
+            card.addEventListener('click', function () { navigateToCourse(card.dataset.courseId); });
+        });
+    }
+
+    renderFilters();
+    renderCourses();
+})();
+</script>

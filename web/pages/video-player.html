@@ -1,0 +1,88 @@
+<div class="min-h-screen flex flex-col bg-paper">
+    <header class="bg-primary text-cream shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2 min-w-0">
+                <button class="p-2 rounded-full hover:bg-secondary/30 shrink-0" onclick="goBack()" aria-label="返回"><i class="fas fa-arrow-left"></i></button>
+                <h1 id="player-course-title" class="text-lg font-kai font-bold truncate"></h1>
+            </div>
+            <span id="player-progress" class="text-xs text-cream/80 shrink-0 ml-3"></span>
+        </div>
+    </header>
+
+    <main class="flex-grow pb-8">
+        <section class="bg-black">
+            <div class="container mx-auto max-w-5xl aspect-video">
+                <iframe id="bilibili-player" class="w-full h-full border-0" title="课程视频" scrolling="no" allow="fullscreen; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <div class="container mx-auto max-w-5xl px-4 py-6 grid lg:grid-cols-[minmax(0,1fr)_340px] gap-6">
+            <div>
+                <section class="bg-cream rounded-xl shadow-md p-5 mb-6 border border-secondary/30">
+                    <p id="lesson-number" class="text-xs text-primary mb-2"></p>
+                    <h2 id="video-title" class="text-xl font-kai font-bold text-primary mb-3"></h2>
+                    <p id="video-description" class="text-dark/75 leading-relaxed mb-4"></p>
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-secondary/20">
+                        <span id="video-duration" class="text-sm text-dark/60"><i class="fas fa-clock mr-1"></i></span>
+                        <a id="video-source" class="text-sm text-primary hover:underline" target="_blank" rel="noopener noreferrer">在哔哩哔哩查看原视频 <i class="fas fa-up-right-from-square ml-1"></i></a>
+                    </div>
+                </section>
+
+                <div class="p-4 bg-secondary/10 border border-secondary/30 rounded-xl text-sm text-dark/70 leading-relaxed">
+                    <p class="font-medium text-primary mb-1"><i class="fas fa-circle-info mr-1"></i>资源说明</p>
+                    <p>本页嵌入公开视频用于非遗学习导览，版权归原作者及平台所有。课程人物资料与视频讲师可能不是同一人，请以原视频署名为准。</p>
+                </div>
+            </div>
+
+            <aside class="bg-cream rounded-xl shadow-md p-4 border border-secondary/30 h-fit">
+                <div class="flex items-end justify-between border-b border-secondary pb-2 mb-3">
+                    <h3 class="font-kai font-bold text-primary">课程章节</h3>
+                    <span class="text-xs text-dark/50">共 8 节</span>
+                </div>
+                <div id="player-lesson-list" class="space-y-2"></div>
+            </aside>
+        </div>
+    </main>
+</div>
+
+<script>
+(function () {
+    var course = getSelectedCourse();
+    var savedIndex = Number(localStorage.getItem('feiyiLessonIndex') || 0);
+    var lessonIndex = course.lessons[savedIndex] && !course.lessons[savedIndex].locked ? savedIndex : 0;
+
+    function render() {
+        var lesson = course.lessons[lessonIndex];
+        localStorage.setItem('feiyiLessonIndex', String(lessonIndex));
+        document.title = lesson.title + ' - ' + course.title;
+        document.getElementById('player-course-title').textContent = course.title;
+        document.getElementById('player-progress').textContent = '第 ' + (lessonIndex + 1) + ' / ' + course.lessons.length + ' 节';
+        document.getElementById('lesson-number').textContent = course.category + ' · 第 ' + (lessonIndex + 1) + ' 节';
+        document.getElementById('video-title').textContent = lesson.title;
+        document.getElementById('video-description').textContent = lesson.description || '本章节将在后续版本开放。';
+        document.getElementById('video-duration').innerHTML = '<i class="fas fa-clock mr-1"></i>' + lesson.duration;
+        document.getElementById('bilibili-player').src = 'https://player.bilibili.com/player.html?bvid=' + encodeURIComponent(lesson.bvid) + '&page=' + (lesson.page || 1) + '&high_quality=1&danmaku=0&autoplay=0';
+        document.getElementById('video-source').href = 'https://www.bilibili.com/video/' + encodeURIComponent(lesson.bvid) + '/?p=' + (lesson.page || 1);
+
+        document.getElementById('player-lesson-list').innerHTML = course.lessons.map(function (item, index) {
+            var locked = Boolean(item.locked);
+            var active = index === lessonIndex;
+            return '<button type="button" ' + (locked ? 'disabled' : '') + ' data-player-lesson="' + index + '" class="w-full flex items-center justify-between p-3 rounded-lg border text-left transition-all ' +
+                (active ? 'bg-primary/10 border-primary/40' : locked ? 'bg-dark/5 border-secondary/10 opacity-55 cursor-not-allowed' : 'bg-white border-secondary/20 hover:border-primary') + '">' +
+                '<span class="flex items-center gap-2 min-w-0"><span class="w-7 h-7 shrink-0 rounded-full ' + (active ? 'bg-primary text-cream' : 'bg-primary/10 text-primary') + ' flex items-center justify-center text-xs font-bold">' + (index + 1) + '</span><span class="min-w-0"><span class="block text-sm ' + (active ? 'text-primary font-medium' : locked ? 'text-dark/55' : 'text-dark/80') + '">' + item.title + '</span><span class="block text-xs text-dark/50 mt-0.5">' + item.duration + '</span></span></span>' +
+                '<i class="fas ' + (locked ? 'fa-lock text-dark/30' : active ? 'fa-volume-high text-primary' : 'fa-play-circle text-primary/60') + ' ml-2"></i>' +
+            '</button>';
+        }).join('');
+
+        document.querySelectorAll('[data-player-lesson]:not([disabled])').forEach(function (button) {
+            button.addEventListener('click', function () {
+                lessonIndex = Number(button.dataset.playerLesson);
+                render();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    }
+
+    render();
+})();
+</script>
