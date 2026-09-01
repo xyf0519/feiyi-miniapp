@@ -577,8 +577,8 @@
             { title: '鹰笛与鹰舞现场', duration: '05:56', bvid: 'BV1kb8C6TEvT', page: 1 }
         ],
         'huangni-drum-dance': [
-            { title: '瑶族长鼓舞教学指导', duration: '06:06', bvid: 'BV1sL411676H', page: 1 },
-            { title: '瑶族长鼓舞示范讲解', duration: '09:58', bvid: 'BV1T8411g7qM', page: 1 }
+            { title: '国家级非遗瑶族长鼓舞《汪嘟》展演', duration: '05:00', bvid: 'BV1pZKszGEtK', page: 1 },
+            { title: '瑶族长鼓舞排练与动作示范', duration: '05:59', bvid: 'BV14h4y1b7QG', page: 1 }
         ],
         'maogusi-dance': [
             { title: '湘西土家族毛古斯舞《打猎》', duration: '07:10', bvid: 'BV1os411T7cj', page: 1 },
