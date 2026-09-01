@@ -11,30 +11,11 @@
 
     <main class="flex-grow pb-8">
         <section class="bg-black">
-            <div id="micro-player" tabindex="0" class="container mx-auto max-w-5xl aspect-video relative overflow-hidden bg-dark text-cream select-none">
-                <img id="micro-cover" class="absolute inset-0 w-full h-full object-cover opacity-35" alt="课程微课画面">
-                <div class="absolute inset-0 bg-gradient-to-br from-dark/95 via-dark/70 to-primary/75"></div>
-                <div class="absolute inset-0 flex flex-col p-5 sm:p-8 md:p-12">
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="inline-flex items-center gap-2 text-xs sm:text-sm text-secondary"><i class="fas fa-circle-play"></i>站内原创微课</span>
-                        <span id="slide-progress" class="text-xs text-cream/65"></span>
-                    </div>
-                    <div class="flex-grow flex flex-col justify-center max-w-3xl">
-                        <p id="slide-kicker" class="text-secondary text-sm sm:text-base mb-2"></p>
-                        <h2 id="slide-title" class="font-kai font-bold text-2xl sm:text-4xl md:text-5xl leading-tight mb-4"></h2>
-                        <p id="slide-text" class="text-cream/85 text-sm sm:text-lg md:text-xl leading-relaxed line-clamp-5"></p>
-                    </div>
-                    <div>
-                        <input id="micro-seek" type="range" min="0" value="0" step="1" class="w-full accent-[#D4A017] cursor-pointer" aria-label="课程进度">
-                        <div class="flex items-center justify-between gap-4 mt-2">
-                            <div class="flex items-center gap-2">
-                                <button id="micro-toggle" class="w-10 h-10 rounded-full bg-cream text-primary hover:bg-secondary transition-colors" aria-label="播放或暂停"><i class="fas fa-play ml-0.5"></i></button>
-                                <button id="voice-toggle" class="w-10 h-10 rounded-full bg-cream/15 border border-cream/30 hover:bg-cream/25" aria-label="语音讲解"><i class="fas fa-volume-high"></i></button>
-                                <span id="micro-time" class="text-xs sm:text-sm text-cream/75 tabular-nums"></span>
-                            </div>
-                            <button id="restart-micro" class="text-xs sm:text-sm text-cream/75 hover:text-cream"><i class="fas fa-rotate-left mr-1"></i>重播</button>
-                        </div>
-                    </div>
+            <div class="container mx-auto max-w-5xl aspect-video relative overflow-hidden bg-dark">
+                <iframe id="bilibili-player" class="absolute inset-0 w-full h-full border-0" title="课程视频播放器" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                <div id="video-loading" class="absolute inset-0 flex flex-col items-center justify-center bg-dark text-cream pointer-events-none transition-opacity">
+                    <i class="fas fa-spinner fa-spin text-3xl text-secondary mb-3"></i>
+                    <p class="text-sm text-cream/75">正在载入真实课程视频…</p>
                 </div>
             </div>
         </section>
@@ -47,13 +28,15 @@
                     <p id="video-description" class="text-dark/75 leading-relaxed mb-4"></p>
                     <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-secondary/20">
                         <span id="video-duration" class="text-sm text-dark/60"><i class="fas fa-clock mr-1"></i></span>
-                        <span class="text-sm text-primary"><i class="fas fa-shield-heart mr-1"></i>站内播放 · 无第三方平台跳转</span>
+                        <a id="original-video-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-primary hover:text-accent hover:underline">
+                            <i class="fas fa-up-right-from-square"></i>内嵌无法播放时打开原视频
+                        </a>
                     </div>
                 </section>
 
                 <div class="p-4 bg-secondary/10 border border-secondary/30 rounded-xl text-sm text-dark/70 leading-relaxed">
                     <p class="font-medium text-primary mb-1"><i class="fas fa-lightbulb mr-1"></i>学习提示</p>
-                    <p>点击播放后，画面会按章节自动推进，并可开启中文语音讲解。拖动进度条可快速复习；涉及工具、火候或大幅度动作的内容，请在专业指导和安全环境下实践。</p>
+                    <p>课程使用公开发布的真实教学、纪录或表演影像。播放器载入速度受当前网络环境影响；若画面长时间未出现，请点击“打开原视频”。涉及工具、火候或大幅度动作的内容，请在专业指导和安全环境下实践。</p>
                 </div>
             </div>
 
@@ -73,87 +56,21 @@
     var course = getSelectedCourse();
     var savedIndex = Number(localStorage.getItem('feiyiLessonIndex') || 0);
     var lessonIndex = course.lessons[savedIndex] && !course.lessons[savedIndex].locked ? savedIndex : 0;
-    var elapsed = 0;
-    var totalSeconds = 0;
-    var activeSlide = -1;
-    var timer = null;
-    var playing = false;
-    var voiceEnabled = true;
 
-    function parseDuration(value) {
-        return String(value).split(':').reduce(function (total, part) { return total * 60 + Number(part); }, 0);
+    function getEmbedUrl(lesson) {
+        return 'https://player.bilibili.com/player.html?isOutside=true&bvid=' + encodeURIComponent(lesson.bvid) +
+            '&page=' + encodeURIComponent(lesson.page || 1) + '&high_quality=1&danmaku=0&autoplay=0';
     }
 
-    function formatTime(value) {
-        var minutes = Math.floor(value / 60);
-        var seconds = Math.floor(value % 60);
-        return String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
-    }
-
-    function stopSpeech() {
-        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-    }
-
-    function cleanupPlayer() {
-        if (timer) clearInterval(timer);
-        timer = null;
-        stopSpeech();
-    }
-
-    function speakSlide(slide) {
-        stopSpeech();
-        if (!voiceEnabled || !playing || !('speechSynthesis' in window)) return;
-        var utterance = new SpeechSynthesisUtterance(slide.title + '。' + slide.text);
-        utterance.lang = 'zh-CN';
-        utterance.rate = 0.92;
-        window.speechSynthesis.speak(utterance);
-    }
-
-    function setPlaying(next) {
-        playing = next;
-        document.getElementById('micro-toggle').innerHTML = '<i class="fas ' + (playing ? 'fa-pause' : 'fa-play ml-0.5') + '"></i>';
-        if (timer) clearInterval(timer);
-        timer = null;
-        if (!playing) { stopSpeech(); return; }
-        if (elapsed >= totalSeconds) elapsed = 0;
-        renderTimeline(true);
-        timer = setInterval(function () {
-            elapsed += 1;
-            if (elapsed >= totalSeconds) {
-                elapsed = totalSeconds;
-                setPlaying(false);
-            }
-            renderTimeline(false);
-        }, 1000);
-    }
-
-    function renderTimeline(forceSpeech) {
-        var lesson = course.lessons[lessonIndex];
-        var slides = lesson.slides || [];
-        var slideIndex = Math.min(slides.length - 1, Math.floor(elapsed / Math.max(1, totalSeconds / slides.length)));
-        if (slideIndex < 0) slideIndex = 0;
-        if (slideIndex !== activeSlide || forceSpeech) {
-            activeSlide = slideIndex;
-            var slide = slides[slideIndex];
-            document.getElementById('slide-kicker').textContent = slide.kicker;
-            document.getElementById('slide-title').textContent = slide.title;
-            document.getElementById('slide-text').textContent = slide.text;
-            document.getElementById('slide-progress').textContent = '画面 ' + (slideIndex + 1) + ' / ' + slides.length;
-            speakSlide(slide);
-        }
-        document.getElementById('micro-seek').value = elapsed;
-        document.getElementById('micro-time').textContent = formatTime(elapsed) + ' / ' + formatTime(totalSeconds);
+    function getOriginalUrl(lesson) {
+        return 'https://www.bilibili.com/video/' + encodeURIComponent(lesson.bvid) + '/?p=' + encodeURIComponent(lesson.page || 1);
     }
 
     function render() {
         var lesson = course.lessons[lessonIndex];
-        if (timer) clearInterval(timer);
-        timer = null;
-        playing = false;
-        stopSpeech();
-        elapsed = 0;
-        activeSlide = -1;
-        totalSeconds = parseDuration(lesson.duration);
+        var frame = document.getElementById('bilibili-player');
+        var loading = document.getElementById('video-loading');
+
         localStorage.setItem('feiyiLessonIndex', String(lessonIndex));
         document.title = lesson.title + ' - ' + course.title;
         document.getElementById('player-course-title').textContent = course.title;
@@ -162,11 +79,13 @@
         document.getElementById('video-title').textContent = lesson.title;
         document.getElementById('video-description').textContent = lesson.description || '本章节将在后续版本开放。';
         document.getElementById('video-duration').innerHTML = '<i class="fas fa-clock mr-1"></i>' + lesson.duration;
-        document.getElementById('micro-cover').src = course.image;
-        document.getElementById('micro-cover').alt = course.title + '微课画面';
-        document.getElementById('micro-seek').max = totalSeconds;
-        document.getElementById('micro-toggle').innerHTML = '<i class="fas fa-play ml-0.5"></i>';
-        renderTimeline(false);
+        document.getElementById('original-video-link').href = getOriginalUrl(lesson);
+
+        loading.classList.remove('opacity-0');
+        frame.onload = function () {
+            loading.classList.add('opacity-0');
+        };
+        frame.src = getEmbedUrl(lesson);
 
         document.getElementById('player-lesson-list').innerHTML = course.lessons.map(function (item, index) {
             var locked = Boolean(item.locked);
@@ -174,7 +93,7 @@
             return '<button type="button" ' + (locked ? 'disabled' : '') + ' data-player-lesson="' + index + '" class="w-full flex items-center justify-between p-3 rounded-lg border text-left transition-all ' +
                 (active ? 'bg-primary/10 border-primary/40' : locked ? 'bg-dark/5 border-secondary/10 opacity-55 cursor-not-allowed' : 'bg-white border-secondary/20 hover:border-primary') + '">' +
                 '<span class="flex items-center gap-2 min-w-0"><span class="w-7 h-7 shrink-0 rounded-full ' + (active ? 'bg-primary text-cream' : 'bg-primary/10 text-primary') + ' flex items-center justify-center text-xs font-bold">' + (index + 1) + '</span><span class="min-w-0"><span class="block text-sm ' + (active ? 'text-primary font-medium' : locked ? 'text-dark/55' : 'text-dark/80') + '">' + item.title + '</span><span class="block text-xs text-dark/50 mt-0.5">' + item.duration + '</span></span></span>' +
-                '<i class="fas ' + (locked ? 'fa-lock text-dark/30' : active ? 'fa-volume-high text-primary' : 'fa-play-circle text-primary/60') + ' ml-2"></i>' +
+                '<i class="fas ' + (locked ? 'fa-lock text-dark/30' : active ? 'fa-circle-play text-primary' : 'fa-play-circle text-primary/60') + ' ml-2"></i>' +
             '</button>';
         }).join('');
 
@@ -186,23 +105,6 @@
             });
         });
     }
-
-    document.getElementById('micro-toggle').addEventListener('click', function () { setPlaying(!playing); });
-    document.getElementById('restart-micro').addEventListener('click', function () { elapsed = 0; activeSlide = -1; setPlaying(true); });
-    document.getElementById('voice-toggle').addEventListener('click', function () {
-        voiceEnabled = !voiceEnabled;
-        this.innerHTML = '<i class="fas ' + (voiceEnabled ? 'fa-volume-high' : 'fa-volume-xmark') + '"></i>';
-        if (voiceEnabled && playing) renderTimeline(true); else stopSpeech();
-    });
-    document.getElementById('micro-seek').addEventListener('input', function () {
-        elapsed = Number(this.value);
-        activeSlide = -1;
-        renderTimeline(playing);
-    });
-    document.getElementById('micro-player').addEventListener('keydown', function (event) {
-        if (event.code === 'Space') { event.preventDefault(); setPlaying(!playing); }
-    });
-    window.addEventListener('hashchange', cleanupPlayer, { once: true });
 
     render();
 })();

@@ -43,7 +43,7 @@ for (const course of courses) {
         if (index < 2) {
             const parts = lesson.duration.split(':').map(Number);
             const seconds = parts[0] * 60 + parts[1];
-            check(lesson.mediaType === 'microLesson' && Array.isArray(lesson.slides) && lesson.slides.length >= 6 && !lesson.locked, `${course.title} 第 ${index + 1} 节应为可播放站内微课`);
+            check(/^BV[0-9A-Za-z]{10}$/.test(lesson.bvid || '') && Number.isInteger(lesson.page) && lesson.page > 0 && !lesson.locked, `${course.title} 第 ${index + 1} 节应为可播放的真实公开视频`);
             check(seconds >= 300 && seconds <= 720, `${course.title} 第 ${index + 1} 节时长不在 5–12 分钟内`);
         } else {
             check(lesson.locked === true, `${course.title} 第 ${index + 1} 节应保持锁定`);

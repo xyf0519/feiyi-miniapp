@@ -138,7 +138,7 @@
                             <i class="fas fa-hand-paper text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-medium text-primary">传统手工艺</h3>
-                        <p class="text-xs text-dark/70 mt-1">3门课程</p>
+                        <p class="text-xs text-dark/70 mt-1" data-category-count="传统手工艺">10门课程</p>
                     </div>
                 </a>
                 <a href="javascript:navigateToCourseList('传统音乐')" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group">
@@ -147,7 +147,7 @@
                             <i class="fas fa-music text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-medium text-primary">传统音乐</h3>
-                        <p class="text-xs text-dark/70 mt-1">1门课程</p>
+                        <p class="text-xs text-dark/70 mt-1" data-category-count="传统音乐">10门课程</p>
                     </div>
                 </a>
                 <a href="javascript:navigateToCourseList('传统舞蹈')" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group">
@@ -156,7 +156,7 @@
                             <i class="fas fa-male text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-medium text-primary">传统舞蹈</h3>
-                        <p class="text-xs text-dark/70 mt-1">1门课程</p>
+                        <p class="text-xs text-dark/70 mt-1" data-category-count="传统舞蹈">10门课程</p>
                     </div>
                 </a>
                 <a href="javascript:navigateToCourseList('传统戏剧')" class="bg-cream rounded-lg shadow-md p-4 border border-secondary/30 hover:shadow-lg transition-shadow group">
@@ -165,7 +165,7 @@
                             <i class="fas fa-theater-masks text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-medium text-primary">传统戏剧</h3>
-                        <p class="text-xs text-dark/70 mt-1">1门课程</p>
+                        <p class="text-xs text-dark/70 mt-1" data-category-count="传统戏剧">10门课程</p>
                     </div>
                 </a>
             </div>
@@ -397,6 +397,14 @@
         const mobileMenuContent = document.getElementById('mobile-menu-content');
         const userMenuButton = document.getElementById('user-menu-button');
         const userMenu = document.getElementById('user-menu');
+
+        document.querySelectorAll('[data-category-count]').forEach(function(element) {
+            const category = element.dataset.categoryCount;
+            const count = (window.COURSES || []).filter(function(course) {
+                return course.category === category;
+            }).length;
+            element.textContent = count + '门课程';
+        });
 
         if (mobileMenuButton) {
             mobileMenuButton.addEventListener('click', function() {

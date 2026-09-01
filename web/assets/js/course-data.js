@@ -483,6 +483,145 @@
         }
     ];
 
+    const supplementalVideos = {
+        'cloisonne': [
+            { title: '景泰蓝：恒久之美', duration: '05:18', bvid: 'BV1Pw411i7Rx', page: 7 },
+            { title: '景泰蓝非遗纪录：从制胎到点蓝', duration: '10:31', bvid: 'BV15e4y1e7fM', page: 1 }
+        ],
+        'su-embroidery': [
+            { title: '苏绣针法示范：正抢针', duration: '05:01', bvid: 'BV134411h789', page: 5 },
+            { title: '苏绣针法示范：单套针', duration: '05:02', bvid: 'BV134411h789', page: 8 }
+        ],
+        'longquan-celadon': [
+            { title: '龙泉青瓷工艺介绍', duration: '08:32', bvid: 'BV1N8foYdEwG', page: 1 },
+            { title: '从泥土到青瓷：制作全过程', duration: '08:12', bvid: 'BV1p34zzYErr', page: 1 }
+        ],
+        'yixing-zisha': [
+            { title: '宜兴紫砂非遗纪录', duration: '05:26', bvid: 'BV1s94y1Q79n', page: 1 },
+            { title: '紫砂壶制作与烧制全过程', duration: '07:56', bvid: 'BV1Khj2ziE1E', page: 1 }
+        ],
+        'yangliuqing-new-year-picture': [
+            { title: '杨柳青年画工艺介绍', duration: '06:14', bvid: 'BV1G4411G7jG', page: 1 },
+            { title: '天津杨柳青木版年画', duration: '08:40', bvid: 'BV1q1PHe4EAV', page: 1 }
+        ],
+        'hengshui-inside-painting': [
+            { title: '衡水内画非遗纪录片《迹忆》', duration: '11:18', bvid: 'BV1of42127wW', page: 1 },
+            { title: '看河北·品非遗：衡水内画', duration: '05:05', bvid: 'BV1RVR3YNE5o', page: 1 }
+        ],
+        'dongyang-bamboo-weaving': [
+            { title: '竹编技法：三角眼编织', duration: '09:20', bvid: 'BV1U54y1C7Sn', page: 1 },
+            { title: '竹编十字编相框实作', duration: '08:22', bvid: 'BV1ukz3YHEGQ', page: 1 }
+        ],
+        'morin-khuur': [
+            { title: '第一课：认识马头琴', duration: '11:40', bvid: 'BV1J9XpBFEza', page: 1 },
+            { title: '第二课：拉响马头琴的第一声', duration: '06:22', bvid: 'BV1J9XpBFEza', page: 2 }
+        ],
+        'xian-drum-music': [
+            { title: '西安鼓乐：东仓鼓乐社现场', duration: '08:16', bvid: 'BV1SY411c75K', page: 1 },
+            { title: '西安鼓乐《满园春》赏析', duration: '06:38', bvid: 'BV1CQ4y1Z7SJ', page: 1 }
+        ],
+        'dong-grand-song': [
+            { title: '侗族大歌文化导论', duration: '09:16', bvid: 'BV1kS4y1q74t', page: 1 },
+            { title: '侗族大歌《蝉之歌》现场', duration: '06:31', bvid: 'BV1Ns4y1A71a', page: 1 }
+        ],
+        'mongolian-long-song': [
+            { title: '非遗之美：蒙古族长调', duration: '05:36', bvid: 'BV1eC4y1C7Ke', page: 1 },
+            { title: '蒙古族长调演唱教学', duration: '07:33', bvid: 'BV19DsAzGEAX', page: 1 }
+        ],
+        'dong-pipa-song': [
+            { title: '《守艺·三江》侗族琵琶歌篇', duration: '07:34', bvid: 'BV1aU4y1y7Ng', page: 1 },
+            { title: '侗族琵琶歌：饭养人，歌养心', duration: '07:05', bvid: 'BV1qj411q7dr', page: 1 }
+        ],
+        'haicai-tune': [
+            { title: '彝族海菜腔文化与现场', duration: '11:54', bvid: 'BV1zu4y1m7ua', page: 1 },
+            { title: '国家级非遗海菜腔交流演出', duration: '09:51', bvid: 'BV13z4y1S7Fh', page: 1 }
+        ],
+        'cantonese-music': [
+            { title: '中国传统音乐：广东音乐', duration: '07:13', bvid: 'BV1x3tDe2Erz', page: 1 },
+            { title: '广东高胡演奏示范', duration: '06:27', bvid: 'BV11m4y1V7D4', page: 1 }
+        ],
+        'jinbei-suonayue': [
+            { title: '晋北梆子唢呐与乐队配合', duration: '07:28', bvid: 'BV1Xh41167VF', page: 1 },
+            { title: '晋北梆子、唢呐与山西小管', duration: '10:07', bvid: 'BV16g411M7hS', page: 1 }
+        ],
+        'nanyin': [
+            { title: '南管谱式与撩拍介绍', duration: '09:29', bvid: 'BV1ns411H7qX', page: 2 },
+            { title: '南管乐器奏法示范', duration: '11:21', bvid: 'BV1ns411H7qX', page: 4 }
+        ],
+        'dai-peacock-dance': [
+            { title: '傣族孔雀舞零基础教学', duration: '06:57', bvid: 'BV1or4y1V7ZS', page: 1 },
+            { title: '傣族舞动作分解教学', duration: '10:01', bvid: 'BV1C441157Z6', page: 1 }
+        ],
+        'korean-farm-dance': [
+            { title: '朝鲜族农乐舞：千年节拍', duration: '07:40', bvid: 'BV1dwSjBfExA', page: 1 },
+            { title: '国家级非遗朝鲜族农乐舞', duration: '05:55', bvid: 'BV1t83izZEyj', page: 1 }
+        ],
+        'fengtai-flower-drum-lantern': [
+            { title: '国家级非遗凤台花鼓灯现场', duration: '06:56', bvid: 'BV1wm421L7Uk', page: 1 },
+            { title: '安徽花鼓灯的前世今生', duration: '08:36', bvid: 'BV1zN411Q7dx', page: 1 }
+        ],
+        'changli-ground-yangge': [
+            { title: '看河北·品非遗：昌黎地秧歌', duration: '05:05', bvid: 'BV1gtQ7YuEBJ', page: 1 },
+            { title: '昌黎地秧歌经典角色《跑驴》', duration: '09:59', bvid: 'BV1wp4y1g7Fo', page: 1 }
+        ],
+        'high-platform-lion-dance': [
+            { title: '非遗高台狮舞技艺介绍', duration: '05:57', bvid: 'BV1JUaWegECE', page: 1 },
+            { title: '高台狮舞现场完整示范', duration: '11:26', bvid: 'BV1MWhsepEbY', page: 1 }
+        ],
+        'mangkang-string-dance': [
+            { title: '藏族弦子舞：点地与拖步训练', duration: '06:10', bvid: 'BV1zf4y1L7Lc', page: 7 },
+            { title: '藏族弦子舞：牧区组合训练', duration: '06:12', bvid: 'BV1zf4y1L7Lc', page: 17 }
+        ],
+        'tajik-eagle-dance': [
+            { title: '塔吉克族鹰舞文化介绍', duration: '09:48', bvid: 'BV1yP4y117ha', page: 1 },
+            { title: '鹰笛与鹰舞现场', duration: '05:56', bvid: 'BV1kb8C6TEvT', page: 1 }
+        ],
+        'huangni-drum-dance': [
+            { title: '瑶族长鼓舞教学指导', duration: '06:06', bvid: 'BV1sL411676H', page: 1 },
+            { title: '瑶族长鼓舞示范讲解', duration: '09:58', bvid: 'BV1T8411g7qM', page: 1 }
+        ],
+        'maogusi-dance': [
+            { title: '湘西土家族毛古斯舞《打猎》', duration: '07:10', bvid: 'BV1os411T7cj', page: 1 },
+            { title: '毛古斯舞：中国舞蹈活化石', duration: '05:15', bvid: 'BV1CK4y197nc', page: 1 }
+        ],
+        'peking-opera': [
+            { title: '荀派唱腔：气息、装饰音与韵味', duration: '10:55', bvid: 'BV1cY4y1s7ib', page: 1 },
+            { title: '荀派花旦《红娘》教学', duration: '06:37', bvid: 'BV155411T72d', page: 1 }
+        ],
+        'yu-opera': [
+            { title: '豫剧经典唱段：唱腔与舞台示范', duration: '06:32', bvid: 'BV1164y1D7xC', page: 2 },
+            { title: '豫剧传统唱腔学唱示范', duration: '08:13', bvid: 'BV1CB7N6YEHZ', page: 1 }
+        ],
+        'sichuan-opera': [
+            { title: '川剧故事：川剧简史', duration: '05:46', bvid: 'BV1XFmdYTE6Y', page: 1 },
+            { title: '川剧故事：弹戏声腔', duration: '05:02', bvid: 'BV1XFmdYTE6Y', page: 6 }
+        ],
+        'haining-shadow-puppetry': [
+            { title: '海宁皮影戏《孙悟空借芭蕉扇》', duration: '10:05', bvid: 'BV1Am4y1b7Qq', page: 1 },
+            { title: '皮影人物拼装与操纵准备', duration: '08:45', bvid: 'BV1wz4y1K7Nd', page: 1 }
+        ],
+        'puzhou-bangzi': [
+            { title: '蒲州梆子唱段《法门寺·悔路》', duration: '11:24', bvid: 'BV1sribByEHy', page: 4 },
+            { title: '蒲州梆子唱段《送女》', duration: '09:02', bvid: 'BV1sribByEHy', page: 5 }
+        ],
+        'maoqiang': [
+            { title: '茂腔的方言与剧种特色', duration: '11:54', bvid: 'BV1rJ4m1x7wR', page: 1 },
+            { title: '经典茂腔《罗衫记》选段', duration: '05:15', bvid: 'BV1UUghzjEfQ', page: 1 }
+        ],
+        'wu-opera': [
+            { title: '五分钟认识婺剧', duration: '05:17', bvid: 'BV1uJnAzfEjd', page: 1 },
+            { title: '婺剧《女儿国》序幕：摆渡子母河', duration: '07:49', bvid: 'BV1rVNG6SE8v', page: 1 }
+        ],
+        'jin-opera': [
+            { title: '晋剧声腔：句式特点', duration: '11:54', bvid: 'BV1xh4y147Xa', page: 1 },
+            { title: '晋剧声腔：声韵基础', duration: '06:40', bvid: 'BV1xh4y147Xa', page: 2 }
+        ],
+        'nanle-mulian-opera': [
+            { title: '目连戏跨地域比较：剧种简介', duration: '09:57', bvid: 'BV16s411678W', page: 23 },
+            { title: '目连戏跨地域比较：传统折子戏', duration: '06:12', bvid: 'BV16s411678W', page: 25 }
+        ]
+    };
+
     function escapeSvgText(value) {
         return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
@@ -507,24 +646,11 @@
         return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
     }
 
-    function makeSlides(course, lesson, lessonIndex) {
-        var topic = course.topics[lessonIndex] || course.topics[0];
-        return [
-            { kicker: '学习目标', title: lesson.title, text: '本节从“' + topic + '”进入' + course.master.project + '。先理解文化语境，再观察动作、声音或工序中的关键关系。' },
-            { kicker: '人物与项目', title: course.master.name + ' · ' + course.master.project, text: course.master.intro },
-            { kicker: '核心观察一', title: course.topics[0], text: '不要急于模仿结果，先辨认材料、身体或声音的起点，记录它如何变化，以及变化之间的先后顺序。' },
-            { kicker: '核心观察二', title: course.topics[1], text: '把复杂技艺拆成小步骤：定位、尝试、对照、调整。每次只改变一个变量，更容易找到稳定的方法。' },
-            { kicker: '跟做与思考', title: course.topics[2], text: lesson.description + ' 练习时请尊重项目的文化背景，涉及工具、火候或大幅度动作时优先保证安全。' },
-            { kicker: '本节小结', title: '看懂传统，也看见传承', text: '回顾三个关键词：' + course.topics.join('、') + '。完成本节后，可继续下一节；学完开放章节即可参加课后测试。' }
-        ];
-    }
-
     function makeCourse(spec, index) {
-        var durationA = ['06:20', '07:10', '08:00', '08:40'][index % 4];
-        var durationB = ['05:50', '06:40', '07:30', '09:10'][index % 4];
+        var videos = supplementalVideos[spec.id];
         var intro = [
             spec.summary + '课程以文化背景、代表性特征和基础实践为主线，帮助初学者建立准确的观察框架。',
-            '前两节为可直接播放的站内微课，分别聚焦“' + spec.topics[0] + '”与“' + spec.topics[1] + '”；后续六节保持锁定状态，依次深入材料、动作、声腔、程式和综合赏析。'
+            '前两节选用可直接播放的真实公开影像，分别聚焦“' + spec.topics[0] + '”与“' + spec.topics[1] + '”；后续六节保持锁定状态，依次深入材料、动作、声腔、程式和综合赏析。'
         ];
         var course = {
             id: spec.id,
@@ -548,8 +674,8 @@
                 photo: spec.photo || ''
             },
             lessons: [
-                { title: spec.topics[0] + '：文化与基础观察', duration: durationA, description: '结合代表性案例认识' + spec.topics[0] + '，建立项目背景、术语和观看方法。' },
-                { title: spec.topics[1] + '：技艺与实践要点', duration: durationB, description: '围绕' + spec.topics[1] + '拆解关键步骤，在观察与安全练习中理解技艺逻辑。' }
+                { title: videos[0].title, duration: videos[0].duration, bvid: videos[0].bvid, page: videos[0].page, description: '通过真实公开影像认识' + spec.topics[0] + '，建立项目背景、术语和观看方法。' },
+                { title: videos[1].title, duration: videos[1].duration, bvid: videos[1].bvid, page: videos[1].page, description: '围绕' + spec.topics[1] + '观察真实技艺或表演，在案例中理解项目的基本特征。' }
             ].concat(spec.outline.map(function (title, lessonIndex) {
                 return { title: title, duration: ['08:00', '09:00', '10:00', '11:00', '10:00', '12:00'][lessonIndex], locked: true };
             })),
@@ -561,10 +687,6 @@
                 { question: '初学非遗技艺时，更合适的学习方式是？', options: ['先理解文化语境，再分步骤观察和练习', '脱离项目背景随意改写', '忽略安全直接追求高难度', '只记结论不观察过程'], answer: 0, explanation: '文化理解、分步观察和安全练习，是负责任地学习非遗项目的基本方法。' }
             ]
         };
-        course.lessons.slice(0, 2).forEach(function (lesson, lessonIndex) {
-            lesson.mediaType = 'microLesson';
-            lesson.slides = makeSlides(course, lesson, lessonIndex);
-        });
         return course;
     }
 
@@ -574,10 +696,6 @@
 
     courses.forEach(function (course) {
         course.topics = course.topics || [course.lessons[0].title, course.lessons[1].title, course.category + '文化'];
-        course.lessons.slice(0, 2).forEach(function (lesson, lessonIndex) {
-            lesson.mediaType = 'microLesson';
-            lesson.slides = lesson.slides || makeSlides(course, lesson, lessonIndex);
-        });
     });
 
     window.COURSES = courses;
